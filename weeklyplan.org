@@ -1,0 +1,59 @@
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+LATEX_HEADER: \usepackage{syllabus}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Syllabus}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+The purpose of this document is to provide an overview of the weekly activites
+related with the course *Network and Server Administration* with code
+*LI4081*. Becoming familiar with the different topics that are going to be
+covered over the next 16 weeks will make it easier for the teacher and students
+to identify activities, material and resources for each main subject that is
+needed for understanding, analysing and coding solutions to specific problems.
+
+* Weekly Plan
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |c|l|X|l|l|
+|------+---------------------+------------------------------------------+-------------------+----------|
+| Week | Topic               | Subjects                                 | Date              | Resource |
+|      |                     | <40>                                     |                   |          |
+|------+---------------------+------------------------------------------+-------------------+----------|
+|    0 | Introduction        | Servers: Hardware and Software, Common Hardware Configurations, Server Operating Systems, CLI, Tools, Software Services, Automation, Secturity, Virtualization, Containers, Cloud Computing, Serversless Architecture. | <2017-01-09 lun.> |          |
+|    1 | Tooling and Booting | Command Line Interface (CLI), SSH, BASH, Git. | <2017-01-16 lun.> |          |
+|    2 | Installation        | POSIX, Grub, Clover, Installation Managers, Package Managers, Partitions, Drivers, Kerner Recompilation. | <2017-01-23 lun.> |          |
+|    3 | Administration      | Installation from source, User management, Permissions, Services Administration, File System, RAID. | <2017-01-30 lun.> |          |
+|    4 | Review              |                                          | <2017-02-06 lun.> |          |
+|    5 | Basic Services      | Daemons, Process Intercommunication, Sockets, Pipes, Log files. | <2017-02-13 lun.> |          |
+|    6 | Common Services     | Mail Services, Web Services, Samba Server, SSH, FTP, Git Lab, MySQL. | <2017-02-20 lun.> |          |
+|    7 | Storage             | File System revisited, Network File System, Common Internet File System, RSync, Backup. | <2017-02-27 lun.> |          |
+|    8 | Networking          | Network hardware, Network configuration, Network administration. Domain Name Server. | <2017-03-06 lun.> |          |
+|    9 | Review              |                                          | <2017-03-13 lun.> |          |
+|   10 | Monitoring          | Memory monitoring, Harddrive Monitoring, CPU usage, Network Monitoring. | <2017-03-20 lun.> |          |
+|   11 | Cibersecurity       | User Permissions revisited, SE Linux, Common Security Risks. | <2017-03-27 lun.> |          |
+|   12 | Cibersecurity       | Cryptography Services, Firewalls, Proxy Servers, DDoS Protection. | <2017-04-03 lun.> |          |
+|   13 | Virtualization      | Hypervisors, VirtualBox, VMWare, Containers, Vagrant, Docker. | <2017-04-17 lun.> |          |
+|   14 | Automatization      | Bash, Make, Rake, Chef, Puppet, Ansible, Application Servers, Serverless Architecture. | <2017-04-24 lun.> |          |
+|   15 | Conclusion          | Integrity and Availability.              | <2017-05-01 lun.> |          |
+|------+---------------------+------------------------------------------+-------------------+----------|
+#+TBLFM: $1=@#-2
+
+* Evaluation Criteria and Evaluation Dates
+
+Each week will be evaluated according to the main task defined on the
+resources. Each week task will have a value of src_calc[:exports results
+:results value scalar latex replace]{round(80.0/16, 2)} {{{results(=5=)}}}
+over 100. The last 20 points will be granted with a capstone project. For
+details of each week evaluation, please check the scoring rubric associated
+following the link of the resources given on the past section.

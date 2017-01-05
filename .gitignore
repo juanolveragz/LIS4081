@@ -1,0 +1,13 @@
+*~
+*.org_archive
+*.log
+*.tex
+*.fls
+*.fdb_latexmk
+\#*\#
+*.pdf
+build/*
+auxdir/*
+
+#WHITELIST
+!build/.gitkeep
