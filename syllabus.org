@@ -1,7 +1,6 @@
 #+LATEX_CLASS: koma-article
 #+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
-#+LATEX_HEADER: \usepackage{syllabus}
-#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{format/header}
 #+TITLE:
 #+OPTIONS: H:1 toc:nil
 #+HTML_DOCTYPE:
@@ -49,29 +48,35 @@ This course does not have any prerequisites
 * Evaluation Criteria and Evaluation Dates
 
 + Elements of Assessment
-  - 3 Partial exams 45%
-  - 1 Final exam    45%
-  - Homework Assignments 55%
-  - Lab Assignments 100%
-+ Partial Exam Dates
-  - September 5
-  - October 3
-  - November 2
-+ Final Exam Date: TBA
+  - Weekly Assesment: 16 weeks 5% each
+  - Capstone Project: 20%
 + General Policy
-  - It is student’s responsibility to stay in campus or near this until the last day of final exams, which can be scheduled for a period of ten working days after the final day of lectures.
+  - It is student’s responsibility to stay in campus or near this until the last
+    day of final exams, which can be scheduled for a period of ten working days
+    after the final day of lectures.
   - It is advised to attend all lectures.
-  - The delivery of homeworks and projects in the set time is important. NO assignments will be accepted out of time. Work submitted late (with justification) will be assessed on 80% of its original value. No assignments will be accepted more than one week late.
-  - The student requires 80% attendance to be eligible to present the final test.
-  - Any case of plagiarism or academic fraud is punishable by a 0 (zero) in the task or job in question. If a student commits fraud for a second time, the case will be presented to the Board of the Department, where the penalty will be determined.
+  - The delivery of homeworks and projects in the set time is important. NO
+    assignments will be accepted out of time. Work submitted late (with
+    justification) will be assessed on 80% of its original value. No assignments
+    will be accepted more than one week late.
+  - The student requires 80% attendance to be eligible to present the final
+    test.
+  - Any case of plagiarism or academic fraud is punishable by a 0 (zero) in the
+    task or job in question. If a student commits fraud for a second time, the
+    case will be presented to the Board of the Department, where the penalty
+    will be determined.
 
 * Recomended and Supplementary textbooks
 #+LATEX: \renewcommand{\labelenumi}{[\arabic{enumi}]}
 1. Christopher Negus; Linux Bible; Wiley; 2015.
-2. Richard Blum, Christine Bresnahan; Linux Command Line and Shell Scripting Bible; Wiley; 2015.
-3. Simson Garfinkel, Gene Spafford, Alan Schwartz; Practical Unix and Internet Security, O`Reilly; 2003.
+2. Richard Blum, Christine Bresnahan; Linux Command Line and Shell Scripting
+   Bible; Wiley; 2015.
+3. Simson Garfinkel, Gene Spafford, Alan Schwartz; Practical Unix and Internet
+   Security, O`Reilly; 2003.
 4. Michael Hüttermann; DevOps for Developers; Apress; 2003.
-5. Dave Thomas, Andy Hunt, Chad Fowler; Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide (The Facets of Ruby); Pragmatic Programmer, 2013.
+5. Dave Thomas, Andy Hunt, Chad Fowler; Programming Ruby 1.9 & 2.0: The
+   Pragmatic Programmers' Guide (The Facets of Ruby); Pragmatic
+   Programmer, 2013.
 
 * Lecturer
 
@@ -81,7 +86,7 @@ This course does not have any prerequisites
 
   + Room: LA202
 
-  + Office Hours: *Monday* 11:00 - 12:00 and *Wednesday* 14:00 - 15:00
+  + Office Hours: *Monday* 11:00 - 12:00 and *Wednesday* 14:00 - 16:00
 
   + Personal Web Page: [[http://juancgalan.com/]]
 

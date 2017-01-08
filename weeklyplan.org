@@ -1,7 +1,6 @@
 #+LATEX_CLASS: koma-article
 #+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
-#+LATEX_HEADER: \usepackage{syllabus}
-#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{format/header}
 #+TITLE:
 #+OPTIONS: H:1 toc:nil
 #+HTML_DOCTYPE:

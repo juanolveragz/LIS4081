@@ -5,6 +5,7 @@
 *.fls
 *.fdb_latexmk
 \#*\#
+.#*
 *.pdf
 build/*
 auxdir/*
