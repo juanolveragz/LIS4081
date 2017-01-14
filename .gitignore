@@ -9,6 +9,9 @@
 *.pdf
 build/*
 auxdir/*
+ltximg/*
+_minted*
+
 
 #WHITELIST
 !build/.gitkeep

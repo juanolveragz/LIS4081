@@ -1,0 +1,188 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 1}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+This document describes the content and activities for Week 1 of the course
+*Network and Server Administration* with code *LI4081*.  For week 1, learners
+will be introduced to command line interaction and bash scripting. It also
+includes a brief overview of ~git~ and ~ssh~.
+
+* Outline
+1. Command Line Interface
+   1. History of TTY
+      1. Teletypewriter
+      2. Dumb Terminal
+      3. Computer Text Terminal
+      4. Terminal Emulator
+      5. Getty
+      6. Virtual Consoles
+      7. Graphical Consoles
+      8. X Server
+   2. What is a command line interface
+   3. Syntax of CLI shells
+   4. Environment Variables
+   5. Command Prompt
+   6. Arguments
+   7. Options
+   8. Abbreviations
+   9. Space Character
+   10. Interpreter
+2. BASH
+   1. Bash Manual
+   2. Basic Commands
+      1. listing
+      2. cd
+      3. cp
+      4. Autocomplete
+      5. touch
+      6. mv
+      7. mkdir
+      8. rmdir
+      9. file
+      10. cat
+      11. more
+      12. less
+      13. tail
+      14. head
+   3. Environment Variables
+      1. Show variables
+      2. Define variables
+	 1. Local
+	 2. Global
+      3. Default Environment Variables
+	 1. PATH
+      4. Startup Files
+3. SSH
+   1. What is Secure Shell?
+   2. Predecesors
+   3. SSHD process.
+4. Git
+   1. Why version control?
+   2. Utilities of version control
+   3. Version control for Administration
+   4. Version control software
+   5. Why git?
+
+* Instructor-led Training Activities
+   1. Create a directory in your home directory called projects.  In the
+      projects directory, create nine empty files that are named house1, house2,
+      house3, and so on to house9. Assuming there are lots of other files in
+      that directory, come up with a single argument to ls that would list just
+      those nine files.
+
+   2. Make the ~$HOME/projects/houses/doors/~ directory
+      path. Create the following empty files within this directory path (try
+      using absolute and relative paths from your home directory):
+
+
+      #+attr_latex: :options outputdir=build
+      #+begin_src shell :results silent :export code
+      $HOME/projects/houses/bungalow.txt
+      $HOME/projects/houses/doors/bifold.txt
+      $HOME/projects/outdoors/vegetation/landscape.txt
+      #+end_src
+
+   # 3. Copy the files house1 and house5 to the src_shell[:export
+   #    code{$HOME/projects/houses/} directory.
+
+   # 4. Recursively copy the src_shell[:export cade]{/usr/share/doc/initscripts*}
+   #    directory to the src_shell[:export source]{$HOME/projects/}
+   #    directory. Maintain the current date/time stamps and permissions.
+
+   # 5. Recursively list the contents of the src_shell[:export
+   #    code]{$HOME/projects/ directory}. Pipe the output to the less command so
+   #    you can page through the output.
+
+   # 6. Remove the files house6, house7, and house8 without being prompted.
+
+   # 7. Move house3 and house4 to the $src_shell[:export
+   #    code]{HOME/projects/houses/doors} directory.
+
+   # 8. Remove the src_shell[:export code]{$HOME/projects/houses/doors} directory
+   #    and its contents.
+
+   # 9. Change the permissions on the src_shell[:export
+   #    code]{$HOME/projects/house2} file so it can be read and written by the
+   #    user who owns the file, only read by the group, and have no permission for
+   #    others.
+
+   # 10. Recursively change permissions of the src_shell[:export
+   #     code]{$HOME/projects/} directory so nobody has write permission to any
+   #     files or directory beneath that point in the filesystem.
+
+   # 11. Make a shell script that prints all odd numbers between 1 and 99
+
+* Self-pace Learning Activities
+
+1. Watch the following material:
+   + [[https://youtu.be/hwrnmQumtPw?list=PLtNNgm3QdKeSQP1Fh92OyvsMvDlpAO-7m][Shell Scripting Tutorial]]
+
+* Assignment: Solving Hackerrank Problems
+
+   Create a solution for each problem:
+   1. [[https://www.hackerrank.com/challenges/bash-tutorials-lets-echo][Let's echo]]
+   2. [[https://www.hackerrank.com/challenges/bash-tutorials---looping-and-skipping][Looping and Skipping]]
+   3. [[https://www.hackerrank.com/challenges/bash-tutorials---a-personalized-echo][A personalized echo]]
+   4. [[https://www.hackerrank.com/challenges/bash-tutorials---looping-with-numbers][Looping with numbers]]
+   5. [[https://www.hackerrank.com/challenges/bash-tutorials---the-world-of-numbers][The world of numbers]]
+   6. [[https://www.hackerrank.com/challenges/bash-tutorials---comparing-numbers][Comparing Numbers]]
+   7. [[https://www.hackerrank.com/challenges/bash-tutorials---getting-started-with-conditionals][Getting started with conditionals]]
+   8. [[https://www.hackerrank.com/challenges/bash-tutorials---more-on-conditionals][More conditionals]]
+   9. [[https://www.hackerrank.com/challenges/bash-tutorials---arithmetic-operations][Arithmetic Operations]]
+   10. [[https://www.hackerrank.com/challenges/bash-tutorials---compute-the-average][Compute the average]]
+   11. [[https://www.hackerrank.com/challenges/text-processing-cut-1][Cut 1]]
+   12. [[https://www.hackerrank.com/challenges/text-processing-cut-2][Cut 2]]
+   13. [[https://www.hackerrank.com/challenges/text-processing-cut-3][Cut 3]]
+   14. [[https://www.hackerrank.com/challenges/text-processing-cut-4][Cut 4]]
+   15. [[https://www.hackerrank.com/challenges/text-processing-cut-5][Cut 5]]
+   16. [[https://www.hackerrank.com/challenges/text-processing-cut-1][Cut 6]]
+   17. [[https://www.hackerrank.com/challenges/text-processing-cut-7][Cut 7]]
+   18. [[https://www.hackerrank.com/challenges/text-processing-cut-8][Cut 8]]
+   19. [[https://www.hackerrank.com/challenges/text-processing-cut-9][Cut 9]]
+
+   Each solution must be written on a file of the same name as the problem
+   removing special characters and replacing blank by low dash and adding the
+   extension ~.sh~. Example: /Let's echo/ file will be ~lets_echo.sh~. All
+   scripts must be stored on a zip file. The name of the zip file must be
+   proyect2.zip
+
+* Assesment
+
+  1. *Due Date: Jun 16, Monday*
+  2. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 extra = 10\mbox{ if }(B\geq 4\mbox{ or }C\geq 4)}\mbox{ and }x = 100.
+	 \end{equation}
+  3. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | Scripts for at least eight problems were sent and are valid syntactically and semantically. | Scripts for at least 12 problems were sent and are valid syntactically and semantically. | Scripts for at least 16 problems were sent and are valid syntactically and semantically. | Scripts for at least 18 problems were sent and are valid syntactically and semantically. | Scripts for all problems were sent and are valid syntactically and semantically. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
