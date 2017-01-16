@@ -1,0 +1,239 @@
+#+TITLE: Week 0. Introduction
+#+DATE: <2017-01-08 dom.>
+#+AUTHOR: Dr. Juan Carlos Galan Hernandez
+#+EMAIL: juan.galan@udlap.mx
+#+LANGUAGE: en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.0.1)
+#+startup: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation, smaller]
+#+BEAMER_FRAME_LEVEL: 1
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+BEAMER_THEME: Madrid
+
+* Servers
+** What is a server?
+*** Broad definition of a server
+#+BEGIN_QUOTE
+A computer in a network that is used to provide services (as access to files or shared peripherals or the routing of e-mail) to other computers in the network -- Merriam Webster
+#+END_QUOTE
+*** A more detailed definition
++ A server is a computer that provides data to other computers
++ Many types of servers exist, including web servers, mail servers, and file servers
++ Each type runs software specific to the purpose of the server
++ While any computer can be configured as a server, most large businesses use rack-mountable hardware designed specifically for server functionality
+** Hardware for Servers
+*** Building a Server
++ While server software is specific to the type of server, the hardware is not as important
++ A regular desktop computers can be turned into a server by adding the appropriate software
++ However, as servers have critical functions, business require specific hardware that increases different aspects
++ Take up minimal space
++ Have useful features such as LED status lights and hot-swappable hard drive bays
++ Share the same monitor and input devices
++ Most servers are accessed remotely using remote access software
+** Software for Servers
+*** What makes a server
++ A /server/ is a a software program
++ Provides a specific kind of service to client software running on the same computer or other computers on a network
++ The client-server model is an architecture (i.e., a system design) that divides processing between clients and servers
++ They can run on the same machine or on different machines on the same network.
++ It is a major element of modern operating system and network design.
+*** Expamples of servers
++ Web Server. Stores files related to web sites and severs them across the Internet
+  + Apache
+  + Nginx
+  + httplite
++ File Server. Combination of software and hardware
+  + Stores files
+  + Make stored files accessible for reading and writing
++ Print Server. Hardware and software
+  + Manages one or more printers
++ Network Servers. Manages network traffic
++ Name Server. Maps user and computer names to machine addresses.
++ Database Server. Allows clients to interact with a database.
++ Application Server. Runs applications for clients.
+*** Software requeriments for servers
++ A single computer can have multiple server software application running on it
++ A single computer can be both client and server simultaneously
+*** Server usage
++ Large enterprises employ dedicated server machines
++ Multiple servers on a location are refered as a /server farm/
++ Heavy traffic is employed to distribute requiest among various servers. This is called /load balancing/
+* Operating Systems
+** Which Operating Systems are for Servers?
+*** Definition of a Server Operating System
+A server operating system (OS) is a type of operating system that is designed to
+be installed and used on a server computer.
+
+It is an advanced version of an operating system, having features and
+capabilities required within a client-server architecture or similar enterprise
+computing environment.
+*** Examples of Server Operating Systems
+- Red Hat Enterprise Linux
+- Windows Server
+- Mac OS X Server
+- Free BSD
+- Oracle Solaris
+- Fedora Server
+- Ubuntu Server
+- Amahi
+- FreeNAS
+- Debian
+** Main Objectives of Server Operating Systems.
+*** Server Operating System Design
+- Favors Client-Server Architecture
+- Most modern Operating Systems have some server functionalities
+- Ability to access the server both in GUI and command-level interface
+- Advanced-level hardware, software and network configuration services
+- Install/deploy business applications and/or web applications
+- Provides central interface to manage users, implement security and other
+  administrative processes
+- Manages and monitors client computers and/or operating systems
+* Installation
+** Tooling needed for server installation.
+*** Booting an operating system.
+- Operating Systems need to be /bootstraped/
+- /Bootstrapping/ is a security risk
+- We will review how an operating system is booted.
+*** Virtualization hardware for multiple servers
+#+BEGIN_QUOTE
+ Act of creating a virtual (rather than actual) version of something, including virtual computer hardware platforms, storage devices, and computer network resources -- Wikipedia
+#+END_QUOTE
+*** Virtualization hardware for multiple servers
+- Is the base for cloud computing
+- A physical server can virtualize multiple servers
+- Save energy
+- Reduce data center foot print
+- Easy QA Environment
+- Faster server provisioning
+- Reduce hardware vendor lock-in
+- Increase uptime (easy migration, resource sharing, less hardware)
+- Improve disaster recovery
+- Isolate applications
+- Extend the life of older applications
+- Serverless architecture lowers operation hassle
+** Basics of Unix System Principles.
+*** System Administrator
+- Write scripts
+- Not a developer
+- Account Provisioning
+- Adding and removing hardware
+- Performing Backups
+- Installing and upgrading software
+- Monitoring the system
+- Troubleshooting
+- Mantaining local documentation
+- Vigilantly monitoring security
+- Fire fighting
+*** Scripting and the Shell
+- Administration task require a high level language
+- It must be able to manipulate the internals of the Operating System
+- It must be easy to execute and less verbosed than programming languages
+- It must interact easily with applications
+*** Types of shells
+- A Shell is a basic environment for interacting with the Operating System
+- It is commonly known as the command line, however this is incorrect
+- There are multiple shells available for Unix and two for Windows
+- Windows:
+  - CMD
+  - PowerShell
+- Unix
+  - sh (Bourne Shell)
+  - bash (Bourne Shell again)
+  - ksh (Korn Shell)
+  - zsh
+  - fish
+- For Unix, sh is the /lingua franca/ of Shell Scripting
+*** Bash
+- Interactive writing through a console emulator
+- Uses emacs shortcuts
+- Or vi shortcuts
+- Uses pipes that can redirect communication through stdin, stdout and stderr
+- Unified I/O (Unix standard)
+- Variables, loops, flow control and integer arithmetic
+- Easy interaction with external applications
+- Can be extended through applications
+*** Perl
+- Flexible grammatic
+- Full fledged language
+- Less verbose than C++, Java and such.
+- Extension through libraries and modules
+- Sometimes more cryptic
+- OO is somewhat young
+*** Python and Ruby
+- More advanced OO environment
+- Better for more complex scripting
+- Mathematical Libraries
+- More readable
+- Community more focused on Test Drive Development
+* Application Management
+** Basic Services: Low level overview.
+*** Main applications
+- Several applications required in POSIX
+- Focused on Management and Development
+- Low level interacting with the kernel
+- Managing hardware
+- Permissions
+- File System
+- Networking
+- Logging
+- Compilers
+- Shell
+*** Topics to be covered
+- Identify POSIX applications
+- Shell scripting
+- Output redirecting and processing
+- Usage of find, ack, grep, tail, and so on.
+- Applications for user management
+- Network management
+- Storage management
+- Security
+** Common Services: Applications most used in the industry.
+*** Common Servers
+- Network Attached Storage Servers (NAS)
+- Storage Attached Network Servers (SAN)
+- Domain Name System Servens (DNS)
+- Network Address Translation Servers (NAT)
+- Web Servers
+- Application Servers (Ruby, Python, PHP)
+- Single Sign On
+- Exchange Server
+- REST Servers
+- PBX
+- Database Servers
+*** Topics to be covered
+- Web Sever Nginx
+- Arch Linux / LFS
+- Bash Scripting
+- File System
+- Network Administration
+- POSIX
+- Note: Check Syllabus
+*** Server Administration
+- User Managment.
+- Permissions.
+- Remote Management.
+- Storage Systems.
+- Software Installation.
+- Secturity Risks.
+- Firewalls.
+- Proxy Servers.
+- DDoS.
+- Data base Administration: MySQL
+*** Backup and Recovery
+- RAID.
+- File System.
+- Synchronization Services.
+- Samba Service.
+*** Advanced Topics
+- Automatization.
+- Hypervisors.
+- Containers.
+- Serverless.
+- Integrity
+- Availability.

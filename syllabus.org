@@ -86,12 +86,13 @@ This course does not have any prerequisites
 
   + Room: LA202
 
-  + Office Hours: *Monday* 11:00 - 12:00 and *Wednesday* 14:00 - 16:00
+  + Office Hours: *Monday* 14:00 - 16:00 and *Wednesday* 14:00 - 15:00
 
   + Personal Web Page: [[http://juancgalan.com/]]
 
-  + Lecture Resources Web Page: [[http://juancgalan.com/lis4081]]
+  + Lecture Resources Web Page: https://winliveudlap.sharepoint.com/sites/lis4081/Shared%20Documents/Forms/AllItems.aspx
 
-* It is student’s responsibility to check habitually his/her e-mail, at least once a week.
-* It is student’s responsibility to visit regularly the SharePoint web site of their courses.
-* It is student’s responsibility to know the general student regulation and guidelines available at http://comunidad.udlap.mx/departamentos/normatividad/Documents/Estudiantes_General%20Reglamento.pdf
+* Regulation
+  - It is student’s responsibility to check habitually his/her e-mail, at least once a week.
+  - It is student’s responsibility to visit regularly the SharePoint web site of their courses.
+  - It is student’s responsibility to know the general student regulation and guidelines available at http://comunidad.udlap.mx/departamentos/normatividad/Documents/Estudiantes_General%20Reglamento.pdf
