@@ -83,48 +83,64 @@ includes a brief overview of ~git~ and ~ssh~.
       house3, and so on to house9. Assuming there are lots of other files in
       that directory, come up with a single argument to ls that would list just
       those nine files.
+      1. Create from 1 to 3 manually
+      2. Remove them on one command
+      3. Create from 1 to 9 with a loop
 
    2. Make the ~$HOME/projects/houses/doors/~ directory
       path. Create the following empty files within this directory path (try
       using absolute and relative paths from your home directory):
-
-
       #+attr_latex: :options outputdir=build
       #+begin_src shell :results silent :export code
       $HOME/projects/houses/bungalow.txt
       $HOME/projects/houses/doors/bifold.txt
       $HOME/projects/outdoors/vegetation/landscape.txt
       #+end_src
+      1. Create houses/doors with two commands
+      2. Remove them with one command
+      3. Create houses/doors with one command
+      4. Create bungalow
+      5. Create bifold
+      6. Create outdoors/vegetation
+      7. Create landscape
+      8. Remove 6 and 8
+      9. Create outdors/vegetation and landscape on one line
 
-   # 3. Copy the files house1 and house5 to the src_shell[:export
-   #    code{$HOME/projects/houses/} directory.
+   3. Copy the files house1 and house5 to the src_shell[:export
+      code{$HOME/projects/houses/} directory.
+      1. Copy the files manually.
+      2. Remove them manually.
+      3. Copy them on one command.
+      4. Show a glob
+      5. Use dir glob for copy
+      6. regex find . -regex "^\.\/house[1-5]" -type f -exec cp {} houses \;
+   4. Recursively copy the src_shell[:export cade]{/usr/share/doc/initscripts*}
+      directory to the src_shell[:export source]{$HOME/projects/}
+      directory. Maintain the current date/time stamps and permissions.
+      cp -R
 
-   # 4. Recursively copy the src_shell[:export cade]{/usr/share/doc/initscripts*}
-   #    directory to the src_shell[:export source]{$HOME/projects/}
-   #    directory. Maintain the current date/time stamps and permissions.
+   5. Recursively list the contents of the src_shell[:export
+      code]{$HOME/projects/ directory}. Pipe the output to the less command so
+      you can page through the output. ls -R
 
-   # 5. Recursively list the contents of the src_shell[:export
-   #    code]{$HOME/projects/ directory}. Pipe the output to the less command so
-   #    you can page through the output.
+   6. Remove the files house6, house7, and house8 without being prompted.
 
-   # 6. Remove the files house6, house7, and house8 without being prompted.
+   7. Move house3 and house4 to the $src_shell[:export
+      code]{HOME/projects/houses/doors} directory.
 
-   # 7. Move house3 and house4 to the $src_shell[:export
-   #    code]{HOME/projects/houses/doors} directory.
+   8. Remove the src_shell[:export code]{$HOME/projects/houses/doors} directory
+      and its contents.
 
-   # 8. Remove the src_shell[:export code]{$HOME/projects/houses/doors} directory
-   #    and its contents.
+   9. Change the permissions on the src_shell[:export
+      code]{$HOME/projects/house2} file so it can be read and written by the
+      user who owns the file, only read by the group, and have no permission for
+      others.
 
-   # 9. Change the permissions on the src_shell[:export
-   #    code]{$HOME/projects/house2} file so it can be read and written by the
-   #    user who owns the file, only read by the group, and have no permission for
-   #    others.
+   10. Recursively change permissions of the src_shell[:export
+       code]{$HOME/projects/} directory so nobody has write permission to any
+       files or directory beneath that point in the filesystem.
 
-   # 10. Recursively change permissions of the src_shell[:export
-   #     code]{$HOME/projects/} directory so nobody has write permission to any
-   #     files or directory beneath that point in the filesystem.
-
-   # 11. Make a shell script that prints all odd numbers between 1 and 99
+   11. Make a shell script that prints all odd numbers between 1 and 99
 
 * Self-pace Learning Activities
 
