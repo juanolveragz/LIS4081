@@ -1,0 +1,121 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 2}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+This document describes the content and activities for Week 2 of the course
+*Network and Server Administration* with code *LI4081*.  For week 2, learners
+will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
+
+* Outline
+  1. POSIX
+     1. What is POSIX?
+     2. Why POSIX?
+     3. POSIX basic elements
+  2. Grub
+     1. Bootloading process
+     2. Bootloader overview
+     3. Types of bootloaders.
+	1. GRUB/Legacy GRUB
+	2. Clover
+	3. System V/System D
+  3. Installation Managers
+     1. Graphical Installation Managers
+     2. Text based installation
+  4. Package Managers
+     1. What is a package manager
+     2. Which problems a package manager solve?
+     3. RPM
+     4. DEB
+     5. Sorce based linux distributions
+  5. Partitions
+     1. Overview of storage architecture
+     2. What is a partition?
+     3. MBR and GPT partition tables
+     4. Partition formats
+     5. Ext family
+     6. FATxx Family
+     7. ZFS
+     8. btrfs
+  6. Drivers
+     1. The role of the device driver
+     2. Drivers and Kernels
+	1. Drivers on hybrid kernels
+     3. Linux kernel driver installation.
+  7. Kerner Recompilation
+     1. Linux and GNU/Linux
+     2. Linux source code
+     3. When a recompilation is needed?
+     4. Kernel Images
+
+* Instructor-led Training Activities
+  1. Creation of a BIOS based virtual appliance for a source based server
+  2. Learners will be guided through the installation process of Archlinux
+
+  Additional resources:
+  + [[https://wiki.archlinux.org/index.php/Installation_guide][Archlinux official installation guide]]
+  + [[https://youtu.be/lizdpoZj_vU][Archlinux Installation Tutorial]]
+
+* Self-pace Learning Activities
+  Watch the following videos about different linux meta distributions.
+  1. Debian Linux
+     + [[https://youtu.be/BNzXSHBwHek][What is Debian Linux]]
+     + [[https://youtu.be/7-8mbeqhwEQ][Debian Installation Tutorial]]
+
+  2. Gentoo Linux
+     + [[https://youtu.be/Derhh6RxICU][Gentoo Linux: Explained]]
+     + [[https://youtu.be/13HUQ0LHI7g?list=PLo8tBedUXjpafCCx4fO7P-UbHerBLy-ku][Gentoo Installation Tutorial Playlist]]
+
+  3. Linux From Scratch
+     + [[https://youtu.be/52amqsFcWzY][What is LFS: The movie]] (Long Video 2hrs. feel free to skim it first)
+     + [[https://youtu.be/VSBkJ3rj-X4?list=PLb9vV2hyHGf6tJsTEmc-wWgDMp-CL73Cx][LFS Installation Tutorial Playlist]]
+
+* Assignment: Installing Linux
+  1. Install a linux distribution on a virtual appliance with the following characteristics:
+     + Must be one of the following distributions: Gentoo, Archlinux, LFS.
+     + It must have the following partitions:
+       + home
+       + boot
+       + swap
+     + It must have one NAT network interface with functional Internet
+     + It must have at least one normal user with wheel privileges (SUDO)
+
+* Assesment
+
+  1. *Due Date: Jun 16, Monday*
+  2. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 extra = 10\mbox{ if }(B\geq 4\mbox{ or }C\geq 4)}\mbox{ and }x = 100.
+	 \end{equation}
+  3. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | Scripts for at least eight problems were sent and are valid syntactically and semantically. | Scripts for at least 12 problems were sent and are valid syntactically and semantically. | Scripts for at least 16 problems were sent and are valid syntactically and semantically. | Scripts for at least 18 problems were sent and are valid syntactically and semantically. | Scripts for all problems were sent and are valid syntactically and semantically. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
