@@ -96,6 +96,7 @@ includes a brief overview of ~git~ and ~ssh~.
       $HOME/projects/houses/doors/bifold.txt
       $HOME/projects/outdoors/vegetation/landscape.txt
       #+end_src
+<<<<<<< HEAD
       1. Create houses/doors with two commands
       2. Remove them with one command
       3. Create houses/doors with one command
@@ -138,6 +139,33 @@ includes a brief overview of ~git~ and ~ssh~.
 
    10. Recursively change permissions of the src_shell[:export
        code]{$HOME/projects/} directory so nobody has write permission to any
+=======
+
+   3. Copy the files house1 and house5 to the ~$HOME/projects/houses/~ directory.
+
+   4. Recursively copy the ~/usr/share/doc/initscripts*~
+      directory to the ~$HOME/projects/~
+      directory. Maintain the current date/time stamps and permissions.
+
+   5. Recursively list the contents of the ~$HOME/projects/~ directory. Pipe the
+      output to the less command so you can page through the output.
+
+   6. Remove the files house6, house7, and house8 without being prompted.
+
+   7. Move house3 and house4 to the
+      ~HOME/projects/houses/doors~ directory.
+
+   8. Remove the ~$HOME/projects/houses/doors~ directory
+      and its contents.
+
+   9. Change the permissions on the
+      ~$HOME/projects/house2~ file so it can be read and written by the
+      user who owns the file, only read by the group, and have no permission for
+      others.
+
+   10. Recursively change permissions of the
+       ~$HOME/projects/~ directory so nobody has write permission to any
+>>>>>>> 417eb108da530294142c9c71baddbf4feec8e3ef
        files or directory beneath that point in the filesystem.
 
    11. Make a shell script that prints all odd numbers between 1 and 99
@@ -178,7 +206,7 @@ includes a brief overview of ~git~ and ~ssh~.
 
 * Assesment
 
-  1. *Due Date: Jun 16, Monday*
+  1. *Due Date: Jun 23, Monday*
   2. Grading
 	 \begin{equation}
 	 grade = \begin{cases}
@@ -187,7 +215,7 @@ includes a brief overview of ~git~ and ~ssh~.
 		 \end{cases}
 	 \end{equation}
 	 \begin{equation}
-	 extra = 10\mbox{ if }(B\geq 4\mbox{ or }C\geq 4)}\mbox{ and }x = 100.
+	 extra = 10\mbox{ if }(B\geq 4\mbox{ and }C\geq 4)\mbox{ and }x = 100.
 	 \end{equation}
   3. Assesment Reference.
 
