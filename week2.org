@@ -18,7 +18,7 @@
 * Purpose
 This document describes the content and activities for Week 2 of the course
 *Network and Server Administration* with code *LI4081*.  For week 2, learners
-will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
+will be introduced to Unix architecture and the basic steps of Linux (Arch Linux)
 
 * Outline
   1. POSIX
@@ -63,11 +63,60 @@ will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
 
 * Instructor-led Training Activities
   1. Creation of a BIOS based virtual appliance for a source based server
-  2. Learners will be guided through the installation process of Archlinux
+  2. Learners will be guided through the installation process of Arch Linux
+  3. Steps
+     1. Create VM with 256RAM and 8Gb HDD
+        - 256RAM
+        - 8Gb HDD
+        - 128 MB Video (Important, failing on this parameter may cause keyboard malfunction)
+     2. Start VM and use a recent Arch Linux ISO
+     3. Run x86_64 bootable
+        1. If a mount error appears (initramfs unpacking failed) please check your ISO
+     4. Personal Choice = switch keyboard to dvorak-programmer
+        1. ~loadkeys programmer-dvorak~
+        2. Or load a latin keyboard
+           1. ~es~ when the char *@* is on your *2* key of the main keyboard
+           2. ~la-latin1~ when the char *@* is on your *Q* key
+     5. Use gparted~ to create partitions
+        + Create a label with type msdos
+          + ~mklabel msdos~
+        + Create a ~swap~ partition after the first ~MiB~ of 512MiB (double of RAM until 4GB)
+          + Primar
+          + ~linux-swap~
+          + ~mkpart primary linux-swap 1MiB 513MiB~
+        + Create a ~boot~ partition of 512MB or more
+          + Primary
+          + ~ext2~
+          + ~mkpart primary ext2 513MiB 1025MiB~
+        + Use the rest of the disk on another partition
+          + Primary
+          + ~ext4~
+          + ~mkpart primary ext4 1025MiB 100%~
+        + Turn on boot flag
+          + ~set 2 boot on~
+        + Check alignment
+          + ~align-check opt 1~
+        + If alignment throws an error, erase the table and start again
+     6. Format Partitions
+        1. ~mkswap /dev/sda1~
+        2. ~mkfs.ext2 /dev/sda2~
+        3. ~mkfs.ext4 /dev/sda4~
+        4. When in doubt of partition numbers use ~lsblk~
+     7. Mount the virtual drive to the ~/mnt~ partition
+        1. ~mount /dev/sda3 /mnt~
+        2. ~mkdir /mnt/boot~
+        3. ~mount /dev/sda2 /mnt/boot~
+     8. Activate swap space
+        1. ~swapon /dev/sda1~
+     9. Pull Arch base packages
+        1. ~pacstrap /mnt base base-devel~
+     10. Prepare file system
+         1. ~genstab -U > /mnt/etc/fstab~
+     11. 
 
   Additional resources:
-  + [[https://wiki.archlinux.org/index.php/Installation_guide][Archlinux official installation guide]]
-  + [[https://youtu.be/lizdpoZj_vU][Archlinux Installation Tutorial]]
+  + [[https://wiki.archlinux.org/index.php/Installation_guide][Arch Linux official installation guide]]
+  + [[https://youtu.be/lizdpoZj_vU][Arch Linux Installation Tutorial]]
 
 * Self-pace Learning Activities
   Watch the following videos about different linux meta distributions.
@@ -85,17 +134,17 @@ will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
 
 * Assignment: Installing Linux
   1. Install a linux distribution on a virtual appliance with the following characteristics:
-     + Must be one of the following distributions: Gentoo, Archlinux, LFS.
+     + Must be one of the following distributions: Gentoo, Arch Linux, LFS.
      + It must have the following partitions:
        + home
        + boot
        + swap
      + It must have one NAT network interface with functional Internet
-     + It must have at least one normal user with wheel privileges (SUDO)
+     + It must have at least one normal user with wheel privileges (~SUDO~)
 
-* Assesment
+* Assessment
 
-  1. *Due Date: Jun 16, Monday*
+  1. *Due Date: Feb 3, Wednesday*
   2. Grading
 	 \begin{equation}
 	 grade = \begin{cases}
@@ -104,7 +153,6 @@ will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
 		 \end{cases}
 	 \end{equation}
 	 \begin{equation}
-	 extra = 10\mbox{ if }(B\geq 4\mbox{ or }C\geq 4)}\mbox{ and }x = 100.
 	 \end{equation}
   3. Assesment Reference.
 
@@ -115,7 +163,9 @@ will be introduced to Unix architecture and the basic steps of Linux (Archlinux)
       |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
       | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
       |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | /Manual/ steps only covers very few key parts of the installation. The operating system is not bootable after following /Manual's/ steps. | /Manual/ steps only covers some key parts of the installation. The operating system is bootable after following /Manual's/ steps but has no configuration. | /Manual/ steps only covers all key parts of the installation. The operating system is fully functional and most basic configuration can be realized with /Manual's/ steps. | /Manual/ steps are clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration. | /Manual/ steps are exceptionally clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration and XWindow configuration. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
       | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
       |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
-      | C. Completion        | Scripts for at least eight problems were sent and are valid syntactically and semantically. | Scripts for at least 12 problems were sent and are valid syntactically and semantically. | Scripts for at least 16 problems were sent and are valid syntactically and semantically. | Scripts for at least 18 problems were sent and are valid syntactically and semantically. | Scripts for all problems were sent and are valid syntactically and semantically. |
-      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+
+#  LocalWords:  LFS
