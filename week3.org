@@ -21,13 +21,25 @@ This document describes the content and activities for Week 3 of the course
 
 * Outline
 
-Installation from source, User management, Permissions, Services Administration, File System, RAID.
+1. User management
+2. Permissions
+3. File System
+4. Installation from source
+5. Services Administration
+6. RAID
 
 * Instructor-led Training Activities
-
+  1. Continue with the installation of arch linux.
+     This week, arch linux installation continues:
+     + Add a normal user
+     + Set permissions and create the wheel group
+     + Configure the network
+     + Review the needed packgaes for development environment
 
 * Self-pace Learning Activities
-
+  1. [[https://wiki.archlinux.org/index.php/Network_configuration][Arch Linux Network Documentation]] (Reading)
+  2. [[https://youtu.be/PEa1xopeufQ][Linux Network Configuration]] (Video)
+  3. [[http://www.xml.com/ldd/chapter/book/ch14.html][Linux Network Drivers]] (Advanced Reading)
 
 * Assignment: Installing Linux
   1. Install a linux distribution on a virtual appliance with the following characteristics:
