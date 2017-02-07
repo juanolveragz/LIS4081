@@ -1,0 +1,106 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 2}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+  This document describes the content and activities for Week 4 of the course
+  *Network and Server Administration* with code *LI4081*.  
+
+* Outline
+  1. File System
+     1. I-Nodes
+     2. Unix File Philosophy
+     3. Standard File System Folders
+  2. User management
+     1. Users
+     2. Groups
+     3. Commands and GUI
+  3. Permissions
+     1. File permissions
+     2. Managing Permissions
+  4. Installation
+     1. Introduction to pacman (Arch Linux Specific)
+     2. From Source Code
+  5. Resources Administration
+     1. System Resources
+     2. File System Usage
+     3. User Monitoring
+  6. What is RAID?
+
+* Instructor-led Training Activities
+  1. Continue with the installation of Arch Linux.
+     This week, arch linux installation continues:
+     + Configure the network
+     + Review the needed packgaes for development environment
+
+* Self-pace Learning Activities
+  Available material:
+  1. File System
+     + http://www.tldp.org/LDP/intro-linux/html/sect_03_01.html
+     + http://unix.stackexchange.com/questions/4186/what-is-usr-local-bin#4187
+  2. User management
+     + https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/ch-Managing_Users_and_Groups.html
+     + http://www.comptechdoc.org/os/linux/commands/linux_cruserman.html
+  3. Permissions
+     + https://www.linux.com/learn/understanding-linux-file-permissions
+     + https://www.linux.com/learn/how-manage-file-and-folder-permissions-linux
+  4. Installation
+     + https://www.linux.com/blog/how-install-software-linux-introduction
+     + https://wiki.archlinux.org/index.php/Pacman
+     + https://www.cs.duke.edu/courses/spring04/cps108/resources/makefiles/sample.html
+     + http://www.techrepublic.com/article/linux-basics-installing-an-application-from-its-source-code/
+  5. Resource Administration
+     + http://www.tldp.org/LDP/sag/html/system-monitoring.html
+  6. What is RAID?
+     + https://youtu.be/NqozAmsUsWI
+
+* Assignment: Installing Linux
+  1. Install a linux distribution on a virtual appliance with the following characteristics:
+     + Must be one of the following distributions: Gentoo, Arch Linux, LFS.
+     + It must have the following partitions:
+       + home
+       + swap
+       + boot
+     + It must have one NAT network interface with functional Internet
+     + It must have at least one normal user with wheel privileges (~SUDO~)
+
+* Assessment
+
+  1. *Due Date: Feb 3, Wednesday*
+  2. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 \end{equation}
+  3. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | /Manual/ steps only covers very few key parts of the installation. The operating system is not bootable after following /Manual's/ steps. | /Manual/ steps only covers some key parts of the installation. The operating system is bootable after following /Manual's/ steps but has no configuration. | /Manual/ steps only covers all key parts of the installation. The operating system is fully functional and most basic configuration can be realized with /Manual's/ steps. | /Manual/ steps are clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration. | /Manual/ steps are exceptionally clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration and XWindow configuration. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+
+#  LocalWords:  LFS
