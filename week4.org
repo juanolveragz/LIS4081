@@ -8,7 +8,7 @@
 
 #+BEGIN_EXPORT latex
 \renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
-\renewcommand{\thedocumenttitle}{Week 2}
+\renewcommand{\thedocumenttitle}{Week 4}
 \renewcommand{\theterm}{Spring 2017}
 \renewcommand{\thecoursename}{Network and Server Administration}
 \renewcommand{\thecoursecode}{LIS4081}
@@ -79,7 +79,7 @@
 
 * Assessment
 
-  1. *Due Date: Feb 3, Wednesday*
+  1. *Due Date: Feb 15, Wednesday*
   2. Grading
 	 \begin{equation}
 	 grade = \begin{cases}
