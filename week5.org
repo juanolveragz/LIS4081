@@ -1,0 +1,120 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 5}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+  This document describes the content and activities for Week 5 of the course
+  *Network and Server Administration* with code *LI4081*.  
+
+* Outline
+   1. Daemons.
+      1. What is a daemon.
+      2. Common daemons.
+      3. Creating a daemon.
+   2. Process Intercommunication.
+      1. Why process intercommunication is needed?
+      2. Types of communication:
+         1. Pipes
+         2. FIFO
+         3. Berkeley Sockets/Winsockets
+   3. Sockets.
+      1. Basics of a socket.
+      2. Creating a socket.
+   4. Pipes.
+      1. Basics of a pipe.
+      2. Creating a pipe.
+   5. Log files.
+      1. Writing on a log file.
+
+* Instructor-led Training Activities
+  1. Creating a Daemon in python.
+     1. http://stackoverflow.com/questions/473620/how-do-you-create-a-daemon-in-python
+     2. http://web.archive.org/web/20131017130434/http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/
+     3. http://stackoverflow.com/questions/17954432/creating-a-daemon-in-linux
+     4. 
+  2. Creating a Socket in python.
+  3. Creating a Pipe in python.
+     1. https://docs.python.org/3.6/library/pipes.html
+     2. http://www.python-course.eu/pipes.php
+     3. http://www.cs.fredonia.edu/zubairi/s2k2/csit431/pipes.html
+  4. Writing to a Log File in python from a daemon.
+
+* Self-pace Learning Activities
+  1. Daemons
+     1. http://www.catb.org/jargon/html/D/daemon.html
+     2. http://www.linfo.org/daemon.html
+     3. https://wiki.archlinux.org/index.php/daemons
+     4. http://unix.stackexchange.com/questions/7608/does-bash-support-forking-similar-to-cs-fork
+  2. Process Intercommunication
+     1. https://www.ibm.com/developerworks/aix/library/au-spunix_sharedmemory/
+  3. Berkeley Sockets
+     1. http://research.omicsgroup.org/index.php/Berkeley_sockets
+     2. https://en.wikipedia.org/wiki/Berkeley_sockets
+  4. Pipes
+     1. Understanding The Linux Kernel (Chapter 19, pp 775)
+        + https://www.amazon.com/Understanding-Linux-Kernel-Process-Management-ebook/dp/B0043D2E54/ref=sr_1_1?s=books&ie=UTF8&qid=1486685370&sr=1-1&keywords=understanding+the+linux+kernel+3rd+edition
+  5. Log files.
+     1. https://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/
+     2. http://cs.brown.edu/~scl/files/IPCWinNTUNIX.pdf
+
+* Assignment: Installing Linux
+  Create a web sever using python.
+  You should create a web server like Apache or NGINX. It must fulfill the following
+  conditions:
+  + It must serve on the 18181 port
+  + It must support HTTP/1.1 protocol
+  + It has to at least accept .html files
+  + Public directory must be configurable
+  + It must use daemons for serving pages to a different clients
+  + The amount of daemons (also called workers) must be configurable
+  + It must work with chrome and firefox.
+  
+  Additional resources: 
+  + https://ruslanspivak.com/lsbaws-part1/
+  + [[https://ruslanspivak.com/lsbaws-part2/]]
+  + [[https://ruslanspivak.com/lsbaws-part3/]]
+
+* Assessment
+
+  1. *Due Date: Feb 22, Wednesday*
+  2. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+     extra = \begin{cases}
+       10\mbox{ if }x=100\mbox{ and }B>3\\
+       20\mbox{ if }x=100\mbox{ and }C>3\mbox{ and }B>3.
+     \end{cases}
+	 \end{equation}
+  4. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations |
+      |----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | /Server/ is not functional. | /Server/ is functional partially. It crashes sometimes or only accepts one request per time. | /Server/ is able to handle asynchronous request from two or more clients. It is able to fulfill the following requests: ~GET~, ~HEAD~, ~POST~, ~PUT~. | /Server/ can handle several clients asynchronous. Most HTTP/1.1 requests are implemented. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | /Sever/ is not configurable. | /Server/ is configurable through /hard coded/ variables. | /Server/ is fully reconfigurable through command line arguments, environment variables or configuration file. If reconfigured, the server must be restarted. | /Server/ is fully configurable and can be configurable on the fly. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------|
+
+#  LocalWords:  LFS
