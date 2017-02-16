@@ -1,0 +1,71 @@
+#+TITLE: Hello, World! Rust version
+#+AUTHOR: PhD. Juan Carlos Galan Hernandez
+#+email: juan.galan@udlap.mx
+
+* Hello, World.
+  As with any language, the best way to start learning a language is creating a
+  hello world program. The next code snippet is the full version.
+
+#+name: hello-world
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  fn main() {
+      println!("Hello World of Rust!");
+  }
+#+end_src
+
+  For anyone coming from C like languages, this syntax must be pretty familiar.
+  First we have the main entry point ~main~. Notice how in *Rust*, functions are
+  declared using the reserved word ~fn~ followed by the name of the function. 
+  Also, because it doesn't return any result, this particular function is void.
+  Another particular difference with plain C is the way we write ~println!~. 
+  Names that ends with a bang ~!~ are *macros*. A macro is expanded before 
+  compilation into its definition. At the time of this writing, the ~println~ 
+  macro is defined as:
+
+#+begin_src rust :tangle no :exports code :noweb yes
+#[macro_export]
+#[stable(feature = "rust1", since = "1.0.0")]
+macro_rules! println {
+    () => (print!("\n"));
+    ($fmt:expr) => (print!(concat!($fmt, "\n")));
+    ($fmt:expr, $($arg:tt)*) => (print!(concat!($fmt, "\n"), $($arg)*));
+}
+#+end_src
+** TODO source: https://github.com/rust-lang/rust/blob/47965f51e6d91ae33bf2b0da0f5510f03766feac/src/libstd/macros.rs#L121
+ 
+
+  Rust uses its own tool for building process called *cargo*. Let's create the
+  ~Cargo.toml~ configuration file, also called /manifest/:
+
+#+begin_src toml :tangle ../Cargo.toml :exports code :noweb yes
+  [package]
+  name = "hello_world"
+  version = "0.1.0"
+  authors = ["Juan Carlos Galan-Hernandez <juan.galan@udlap.mx>"]
+#+end_src
+
+  Let's compile it
+
+#+begin_src shell :tangle no :exports both :noweb yes
+  cargo build
+#+end_src
+
+#+RESULTS:
+
+  And then run it:
+#+begin_src shell :tangle no :exports both :noweb yes
+  ./target/debug/hello_world
+#+end_src
+
+#+RESULTS:
+: Hello World of Rust!
+
+  We can also use ~cargo run~ to compile and run:
+#+begin_src shell :tangle no :exports both :noweb yes
+  cargo run
+#+end_src
+
+#+RESULTS:
+: Hello World of Rust!
+
+
