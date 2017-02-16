@@ -1,0 +1,7 @@
+#+title: Main File
+
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  fn main() {
+      print!("Hello World premiere");
+  }
+#+end_src

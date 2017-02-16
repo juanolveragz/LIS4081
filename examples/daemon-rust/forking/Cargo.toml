@@ -1,0 +1,8 @@
+[package]
+name = "rust_fork"
+version = "0.0.20170216"
+authors = ["Juan Carlos Galan-Hernandez <juan.galan@udlap.mx>"]
+
+build = "build.rs"
+
+[dependencies]
