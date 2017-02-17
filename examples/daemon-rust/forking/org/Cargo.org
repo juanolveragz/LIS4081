@@ -1,7 +1,6 @@
 #+Title: Manifest
 
-* DONE Project Definition 
-  CLOSED: [2017-02-16 Thu 16:55]
+* TODO Project Definition 
   The objective of this project is to be an essay of a simple
   parallel program using Unix function ~fork()~. There is no 
   implementation of ~fork()~ on the *Rust* language. However,
@@ -33,7 +32,7 @@
 
 #+begin_src rust :tangle ../build.rs :exports code :noweb yes
   use std::io;
-  use std::fs::{self, DirEntry};
+  use std::fs::{self};
   use std::path::Path;
   use std::process::Command;
 #+end_src
@@ -49,30 +48,33 @@
       let name = file.file_name().unwrap().to_str().unwrap();
       let parent = parent.file_name().unwrap().to_str().unwrap();
       if name == "Cargo.org" {
-          println!("Tangle: Ignoring file {}", name);
+          println!("[Tangle] Ignoring file {}", name);
           return Ok(());
       } else {
-          println!("Tangle: Tangling file {}", name);
+          println!("[Tangle] Tangling file {}", name);
           match file.extension() {
-              Some(xt) => {
+              Some(_) => {
                   let ext = file.extension().unwrap().to_str().unwrap();
                   if ext == "org" {
-                      let command = format!("--eval \"(progn \
-                                             (require 'org)\
-                                             (require 'ob)\
-                                             (require 'ob-tangle)\
-                                             (find-file \
-                                             (expand-file-name \\\"{}\\\" \\\"\\\"))\
-                                             (org-babel-tangle)\
-                                             (kill-buffer))\"", name);
+                      let command = format!("(progn 
+                                               (require 'org)
+                                               (require 'ob)
+                                               (require 'ob-tangle)
+                                               (find-file 
+                                                 (expand-file-name \"{}\" \"{}\"))
+                                               (org-babel-tangle)
+                                               (kill-buffer))", name, parent);
                       let result = Command::new("emacs")
-                          .args(&["-Q", "--batch"])
+                          .args(&["-Q", "--batch", "--eval"])
                           .arg(&command)
                           .output()
-                          .expect(&format!("Failed command {}", name));
-                      println!("status: {}", result.status);
-                      println!("stdout: {}", String::from_utf8_lossy(&result.stdout));
-                      println!("stderr: {}", String::from_utf8_lossy(&result.stderr));
+                          .expect(&format!("Tangle: Failed command {}", name));
+                      if !result.status.success() {
+                          println!("[Tangle] status: {}", result.status);
+                          println!("[Tangle] stderr: {}", String::from_utf8_lossy(&result.stderr));
+                      } else {
+                          println!("[Tangle] stdout: {}", String::from_utf8_lossy(&result.stdout));
+                      }
 
                   }
               } 
@@ -90,15 +92,17 @@
   fn walk_tree(parent: &Path, dir: &Path) -> io::Result<()> {
       let full_dir_buf = parent.join(dir);
       let full_dir = full_dir_buf.as_path();
-      println!("cargo:Entering {}", full_dir.file_name().unwrap().to_str().unwrap());
+      println!("[cargo] Entering {}", full_dir.file_name().unwrap().to_str().unwrap());
       for entry in try!(fs::read_dir(full_dir)) {
           let entry = try!(entry);
           let path = entry.path();
           if path.is_dir() {
               try!(walk_tree(&parent, &path));
-
           } else {
-              tangle_org(&full_dir, &path);
+              match tangle_org(&full_dir, &path) {
+                  Ok(_) => {}
+                  Err(_) => println!("[cargo] Error processing file")
+              }
           }
       }
       Ok(())
@@ -110,7 +114,10 @@
 #+begin_src rust :tangle ../build.rs :exports code :noweb yes
   fn main() {
       println!("Tangling org files");
-      walk_tree(Path::new(""), Path::new("./org"));
+      match walk_tree(Path::new(""), Path::new("./org")) {
+          Ok(_) => {}
+          Err(_) => println!("[cargo] Error reading org dir")
+      }
   }
 #+end_src
 

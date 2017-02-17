@@ -1,8 +1,0 @@
-Tangling org files
-cargo:Entering org
-Tangle: Ignoring file Cargo.org
-Tangle: Tangling file main.org
-status: exit code: 255
-stdout: 
-stderr: Unknown option ‘--eval "(progn (require ’org)(require ’ob)(require ’ob-tangle)(find-file (expand-file-name \"main.org\" \"\"))(org-babel-tangle)(kill-buffer))"’
-
