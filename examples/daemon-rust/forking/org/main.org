@@ -1,7 +1,97 @@
 #+title: Main File
 
+* Rust libraries for creating a fork
+  Unix based operating systems implement multi-processing through the ~fork~
+  primitive. While *Rust* doesn't have a native implementation of ~fork~ because
+  is platform specific, it can be invoked through ~FFI~ using a library called
+  ~libc~ which was included on this project previously.
+
+  First, ~libc~ methods and types must be included on the file.
+
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  extern crate libc;
+
+  use libc::pid_t;
+  use libc::waitpid;
+  use libc::fork;
+  use libc::getpid;
+  use std::process::exit;
+#+end_src
+  
+  This example requires the type ~pid_t~ from ~libc~ that represents the /process id/
+  given to a particular process by the operating system. On our example, ~pid~s will
+  allow to differentiate between parent and descendant processes. Following, function
+  ~waitpid~ allows process to wait for a process with a given ~pid~ to finish before 
+  continue, function ~fork~ creates a copy of the calling process and ~getpid~ recovers
+  the current ~pid~ of a calling process.
+
+* Creating a simple fork
+  On this example, a fork will be created that prints ~This is a descendant with pid [PID]~
+  to the ~stdout~. Parent process will also print ~This is the parent process with pid [PID]~.
+  
+  Function's signature is as follows:
+
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  fn create_simple_process() {
+      let ppid: pid_t = unsafe {getpid()};
+      let pid: pid_t = unsafe {fork()};
+      if ppid == unsafe{getpid()} {
+          let mut x: i32 = 0;
+          let status: *mut i32 = &mut x;
+          println!("This is the parent process with pid [{}]", ppid);
+          unsafe {waitpid(pid, status , 0)};
+      } else {
+          println!("This is the descendant process with pid [{}]", unsafe {getpid()});
+      }
+  }
+#+end_src
+
+* Creating multiple processes
+  Fork allows creating multiple process. In some servers multiple processes are used
+  for distributing loads of requests as in *Apache Web Server* or *Nginx*. Sometimes,
+  a group of multiple processes are referred as a /pool of processes/ or /pool of workers/.
+  The following function creates a pool of workers.
+
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb no
+  fn create_worker_pool(n: i32) -> Option<Vec<pid_t>> {
+      let ppid: pid_t = unsafe { getpid() };
+      let mut workers:Vec<pid_t> = Vec::new();
+      let mut wid = -1;
+      for id in 0..n {
+          println!("Creating worker {}", id);
+          let pid: pid_t = unsafe { fork() };
+          if unsafe {getpid()} == ppid {
+              workers.push(pid);
+          } else {
+              wid = id;
+              break;
+          }
+      }
+      if ppid != unsafe {getpid()} {
+          println!("I'm worker {}", wid);
+          None
+      } else {
+          println!("I'm the parent");
+          Some(workers)
+      }
+  }
+#+end_src
+
+* Tests
+  Let's try both functions declared previously
+
 #+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
   fn main() {
-      print!("Hello World premiere");
+      match create_worker_pool(4) {
+          Some(r) => {
+              for i in r {
+                  let mut status: i32 = -1;
+                  let ref_status: *mut i32 = &mut status;
+                  println!("Waiting for pid: {}", i);
+                  unsafe { waitpid (i, ref_status, 0)};
+              }
+          }
+          None => exit(0)
+      }
   }
 #+end_src

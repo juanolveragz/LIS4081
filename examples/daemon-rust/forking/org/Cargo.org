@@ -131,4 +131,5 @@
 
 #+begin_src toml :tangle ../Cargo.toml :exports code :noweb yes
   [dependencies]
+  libc = "0.2"
 #+end_src
