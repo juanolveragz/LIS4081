@@ -1,0 +1,155 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 7}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration Laboratory}
+\renewcommand{\thecoursecode}{LIS4091}
+\makeheadfoot
+#+END_EXPORT
+
+* Installing Vagrant
+   Vagrant is a tool for building complete development environment. With an
+   easy-to-use workflow and focus on automation, Vagrant lowers development
+   environment setup time, increase development/production parity, and makes the
+   "works on my machine" excuse a relic of the past.
+               
+** Purpose 
+   Vagrant aims to provide reproducible and portable work environment built on 
+   top of virtualization tools. This allows flexibility and consistent 
+   environments for development teams. On this practice, students will create
+   a simple Vagrant environment for building a router box based on Arch Linux.
+
+** Objectives
+   + Understand virtual environment managers
+   + Learn to install Vagrant/Virtualbox
+   + Add /boxes/
+   + Configure a given Vagrant /Box/
+   + Configure a /Box/'s Network
+
+** Instructor-led Activities
+   + Install latest Virtual Box version (5.14 as Spring 2017)
+     + Install Virtual Box according to available platform as described [[https://www.virtualbox.org/wiki/Downloads][here]]
+   + Install latest Vagrant tools.
+     + Install Vagrant according to available platform as described [[https://www.vagrantup.com/downloads.html][here]]
+   + Identify Basic Vagrant Configuration Environment Variables
+     + Set the ~VAGRANT_DOTFILE_PATH~ as follows
+#+begin_src bash :export code :noweb no
+  export VAGRANT_DOTFILE_PATH=~/.vagrant
+#+end_src 
+     + Set the ~VAGRANT_HOME~ as follows
+#+begin_src bash :export code :noweb no
+  export VAGRANT_HOME=~/.vagrant.d
+#+end_src
+   + Check the installed versions of the tools as follows
+#+begin_src bash :export code :noweb no
+  vagrant --version
+  VBoxManage --version
+#+end_src
+   + Vagrant must add a box before we start to create new environments, to add
+     an Arch box, use the following command:
+#+begin_src bash :export code :noweb no
+  vagrant box add wholebits/arch-64
+#+end_src
+     When asked, choose Virtual Box as provider.
+   + With the box added, create a new folder where our router will be stored.
+#+begin_src bash :export code :noweb no
+  mkdir -p lab7/router
+#+end_src
+   + Move to the created folder and type the following
+#+begin_src bash :export code :noweb no
+  vagrant init wholebits/arch-64
+#+end_src
+     This will create a Vagrant file.
+   + Open the file and discuss its content
+   + Discuss Ruby's block structure
+   + Initialize our new box
+#+begin_src bash :export code :noweb no
+  vagrant up
+#+end_src
+   + To log into this new box, we have two choices:
+     + If you have ssh ~CLI~ support (*OpenSSH* on *UNIX* will suffice) 
+#+begin_src bash :export code :noweb no
+  vagrant ssh
+#+end_src
+     + If you are using an ssh client like *PUTTY* on windows, the following
+       data is required:
+       + Address: localhost
+       + Port: 2222
+       + User: vagrant
+       + Password: vagrant
+     + Once logged in, update the box
+#+begin_src bash :export code :noweb no
+  sudo pacman -Syu
+#+end_src
+     + Once updated, logout
+#+begin_src bash :export code :noweb no
+  exit
+#+end_src
+     + Next, we will be destroying this instance, as we want to simulate a
+       network environment. Type the following
+#+begin_src bash :export code :noweb no
+  vagrant destroy
+#+end_src
+     + This will destroy our box instance. Next we will configure two different
+       instances, a simulated client and a router. First, remove the following 
+       line
+#+begin_src ruby :export code :noweb no
+  config.vm.box = "wholebits/arch-64"
+#+end_src
+     + Next, we will be adding two sections: a section for our ~router~ machine
+       and a section for our ~client~ machine.
+#+begin_src ruby :export code :noweb no
+  config.vm.define "router", primary: true do |router|
+  end
+
+  config.vm.define "client" do |client|
+  end
+#+end_src
+     + We have to add which box we will be using for each machine. Onto the router
+       block add:
+
+#+begin_src ruby :export code :noweb no
+  router.vm.box = "wholebits/arch-64"
+#+end_src
+     + Do the same for the client block
+#+begin_src ruby :export code :noweb no
+  client.vm.box = "wholebits/arch-64"
+#+end_src
+     + We can now start our machines
+#+begin_src bash :export code :noweb no
+  vagrant up
+#+end_src
+     + For connecting to our clients, we can use ~vagrant ssh~ with the name of
+       the required machine.
+#+begin_src bash :export code :noweb no
+  vagrant ssh router
+#+end_src
+       or 
+#+begin_src bash :export code :noweb no
+  vagrant ssh client 
+#+end_src
+     + However, because the way the machines are pre configured, it becomes confusing
+       to identify to which machine we are connected, lets add some extra commands.
+
+#+begin_src ruby :export code :noweb no
+    router.vm.provision "shell",
+                        run: "always",
+                        inline: "hostname router"
+#+end_src
+
+*** Notes:
+    + On Linux Platforms, check using official repositories first for available
+      versions of required software. It must be the requested version on the 
+      instructions. Other versions may fail.
+    + On *Mac OS* Platforms, [[https://brew.sh][Homebrew]] and [[https://caskroom.github.io][Cask]] can be used to manage installations.
+    + Feel free to change the environment variable values to another value if
+      needed.
+    + Windows users must add vagrant and Virtual Box paths to the path if required.
