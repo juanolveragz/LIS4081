@@ -1,7 +1,48 @@
 #+title: Main File
 
+* Creating a new process
+  Unix like operating systems must provide a way to create a new process from
+  a parent program. At the time of writing this example, there is no full
+  Rust implementation for creating a Unix process. However, thanks to the 
+  *FFI* implementation of Rust, a native implementation of ~fork()~ can be
+  used.
+
+  First, we need to declare our dependencies. 
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  extern crate libc;
+  use libc::pid_t;
+  use libc::getpid;
+#+end_src
+  
+  To have a clear understanding of process interaction, it will be required
+  to have a function that prints the current ~PID~. 
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  fn print_ppid() {
+      let ppid: pid_t = unsafe { getpid() };
+      println!("PID: {}", ppid);
+  }
+#+end_src
+  The ~pid_t~ must be used to avoid errors when compiling on different
+  platforms. Also, all operations from the ~libc~ dependency must be invoked
+  as ~unsafe~ per requirement of the language. 
+
+* Non-sharing memory.
+  A problem arises when creating a ~fork()~. Both processes, parent and decendant,
+  don't share memory space. When a fork is created, the operating system
+  duplicates the memory page of the parent process. However, once copied, all
+  variables are independent from its copies.
+  The following function will create a new fork and then it will attempt to 
+  change the value of a mutable variable from the decendant.
+
+#+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
+  fn try_to_share_memory() {
+#+end_src
+  
+  The function will first obtain the 
+  
 #+begin_src rust :tangle ../src/main.rs :exports code :noweb yes
   fn main() {
-      print!("Hello World premiere");
+      print!("Parent process ");
+      print_ppid();
   }
 #+end_src

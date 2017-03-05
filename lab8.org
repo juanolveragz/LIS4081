@@ -1,0 +1,87 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Week 7}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration Laboratory}
+\renewcommand{\thecoursecode}{LIS4091}
+\makeheadfoot
+#+END_EXPORT
+
+* Installing Vagrant
+   Vagrant is a tool for building complete development environment. With an
+   easy-to-use workflow and focus on automation, Vagrant lowers development
+   environment setup time, increase development/production parity, and makes the
+   "works on my machine" excuse a relic of the past.
+               
+** Purpose 
+   Vagrant aims to provide reproducible and portable work environment built on 
+   top of virtualization tools. This allows flexibility and consistent 
+   environments for development teams. On this practice, students will create
+   a simple Vagrant environment for building a router box based on Arch Linux.
+
+** Objectives
+   + Understand virtual environment managers
+   + Learn to install Vagrant/Virtualbox
+   + Add /boxes/
+   + Configure a given Vagrant /Box/
+   + Configure a /Box/'s Network
+
+** Instructor-led Activities
+   * Configuring the environment
+     + Because the way the machines are pre configured, it becomes confusing
+       to identify to which machine we are connected, lets add some extra commands.
+     + Add the following to the router configuration
+#+begin_src ruby :export code :noweb no
+    router.vm.provision "shell",
+                        run: "always",
+                        inline: "hostname router"
+#+end_src
+     + Next, add the following on the web-server configuration
+#+begin_src ruby :export code :noweb no
+    router.vm.provision "shell",
+                        run: "always",
+                        inline: "hostname webserver"
+#+end_src
+     + ~provision~ property allows to make changes on the configuration of the virtual
+       server.
+       + Notice that any permanent change on the appliance will be reflected over all
+         instances of the same box image. Vagrant shares hard drives between images.
+     + Before making any change, log into the appliances with ssh and check the nameserver
+     + Exit from both machines and run the following command
+#+begin_src bash :export code :noweb no
+  vagrant reload --provision
+#+end_src
+     + Check the names again
+     + From time to time, you will need to check for non responsive servers.
+       Let's enable the provider gui interface for the ~web-sever~ appliance.
+     + Inside the ~web-server~ block add the following
+#+begin_src ruby :export code :noweb no
+    web.vm.provider "virtualbox" do |vb|
+      vb.gui = true
+    end
+#+end_src
+     + When enabling the ~gui~, appliances will reboot.
+     + Let's connect both appliances now, vm providers add a default NAT connection
+       that don't allow appliances to see each other. For connecting two virtual appliances,
+       we need to create a ~private~ network interface. Adding interfaces is done on
+       appliance's block.
+     + First let's add an interface to the router. Add the following to the router block:
+#+begin_src ruby :export code :noweb no
+    router.vm.network "private_network", ip: 10.0.3.2, auto_config: false
+#+end_src
+     + Also, add a new network to the ~web-server~
+#+begin_src ruby :export code :noweb no
+    web.vm.network "private_network", ip: 10.0.3.2, auto_config: false
+#+end_src
+     + Before reloading, don't forget to remove the gui enabling code.
+     + Reload the machines
+
+

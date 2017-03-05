@@ -1,0 +1,3 @@
+router.vm.provision "shell",
+                    run: "always",
+                    inline: "hostname router"
