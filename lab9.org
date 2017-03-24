@@ -1,0 +1,175 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Practice 9}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration Laboratory}
+\renewcommand{\thecoursecode}{LIS4091}
+\makeheadfoot
+#+END_EXPORT
+
+* Hardening a Web Server
+   Nowadays is pretty common for a software project to require a public web server. Web server are
+   the entry point of several services including web apps, mobile apps, and more. This makes a web
+   a common target for attacks. Reducing the attack surface must be a priority. With Netfilter and
+   iptables it is possible to avoid common network attack vectors. 
+   
+               
+** Purpose 
+   On this practice you will be able to learn how to implement basic filters using iptables on 
+   Red Hat based Linux distributions. In addition, you will be able to create automation scripts
+   using Chef and Vagrant for server replication allowing to create web server environments easily
+   for development, testing and production environments.
+
+** Objectives
+   + Understand the filter table and its chains
+   + Implement chain rules.
+   + Understand Chef cookbooks
+   + Create a new Recipe
+   + Understand recipe development environment
+
+** Instructor-led Activities
+*** Initial Setup
+    1. Import the given box into vagrant available boxes. Assuming that the box file provided is stored
+       on the current directory, use the following command:
+        #+begin_src
+        vagrant box add --provider virtualbox --name learnignchef/centos65 ./chefbox.box
+        #+end_src
+    2. If you have not received a box file or you wish to install a more resent version, use the following
+       command
+        #+begin_src
+        vagrant box add --provider virtualbox learnignchef/centos65
+        #+end_src
+       Note that this box may not be available anymore on Hashicorp servers. Also, your process may take 
+       more time initially because the remote box may not be updated recently.
+*** Practice
+    1. Create a new folder called ~lab9~ and make it the current directory
+    2. Initialize it as a git repository
+        #+begin_src
+        git init .
+        #+end_src
+    This is a requirement for creating a new recipe
+    1. Create a vagrant instance using the provided box
+        #+begin_src
+        vagrant init learnignchef/centos65
+        #+end_src
+       1. If you have installed rbenv, set the local environment to Ruby 2.3.1
+          #+begin_src
+          rbenv local 2.3.1
+          #+end_src
+         This practice must work with any version after 2.3.1.
+       2. If you don't have bundle, install it with
+          #+begin_src
+          gem install bundle
+          #+end_src
+    2. Create a Gemfile
+       #+begin_src
+       touch Gemfile
+       #+end_src
+    3. Edit the Gemfile with the following gems
+       #+begin_src ruby
+         source 'https://rubygems.org'
+
+         gem 'knife-solo'
+         gem 'knife-solo_data_bag'
+       #+end_src
+    4. Run the bundle installer
+       #+begin_src shell
+       bundle install
+       #+end_src
+    5. Initialize our ~chef-solo~ environment for development.
+        #+begin_src
+        knife solo init .
+        #+end_src
+    6. We have our environment initialized. Let's commit
+        #+begin_src shell
+          git add .
+          git commit -m "Initalized web server versioning environment"
+        #+end_src
+    7. Let's try some filters manually.
+       Edit the vagrant file and create a ~webserver~ module.
+       #+begin_src ruby
+         config.vm.define 'webserver' do |webserver|
+           webserver.vm.box = 'learningchef/centos65'
+           webserver.vm.provision 'chef_solo' do |chef|
+             chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
+           end
+           webserver.vm.provider 'virtualbox' do |vb|
+             vb.gui = true
+           end
+         end
+       #+end_src
+    8. Start the module
+       #+begin_src
+       vagrant up webserver
+       #+end_src
+       It may take some time because chef will update our base system.
+    9. Go into the box and type the following
+       #+begin_src shell
+       sudo iptables -nL
+       #+end_src
+    10. Let's establish a policy for the ~FORWARD~ chain.
+       #+begin_src shell
+       sudo iptables -F
+       sudo iptables -P FORWARD DROP
+       #+end_src
+    11. Following, try to establish the policies for ~INPUT~ to ~DROP~ and
+        ~OUTPUT~ to ~ACCEPT~
+        NOTE: Unless you reset the ~INPUT~ chain to ~ACCEPT~, vagrant will 
+        be unable to manage this virtual machine. Be careful until we 
+        allow ~ssh~ connections.
+    12. Try to connect through ssh from the host
+       #+begin_src shell
+       vagrant ssh webserver
+       #+end_src
+       This attempt will timeout. If you don't wish to wait cancel the 
+       command with ~C-c~.
+    13. Check the name of the interfaces, so far you must have two: ~lo~ and ~eth0~.
+       Let's allow for ~ssh~ incoming connections. Use the following command:
+       #+begin_src shell
+       sudo iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+       sudo iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+       #+end_src
+    14. This must reestablish vagrant ssh. Try it now.
+    15. Next, try to allow for incoming HTTP and HTTPS connections using the above example.
+    16. If you wish to establish the ~OUTPUT~ policy to ~DROP~ it will block ssh connections to
+        the outside world from the web server. This is unpractical for many reasons, we require to
+        add the following rules:
+       #+begin_src shell
+       sudo iptables -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+       sudo iptables -A INPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+       #+end_src
+    17. This must be done also for HTTP and HTTPS connections, try to establish that ones by yourself.
+        Check them using the following command:
+       #+begin_src shell
+       curl www.google.com
+       #+end_src
+       It must return the index page of google.
+    18. Now we are missing our web server and to automate the rules so next time the box goes up everything
+       is as we expect. First, remove our ~gui~ interface from the Vagrant file.
+    19. Next, we will be installing a recipe for the apache web server, open the Berksfile and add the following
+       line
+       #+begin_src ruby
+       cookbook 'apache2'
+       #+end_src
+    20. Now, install the cookbook from the supermarket. Use the following command
+       #+begin_src shell
+       berks vendor cookbooks
+       #+end_src
+    21. Add the following lines to the ~webserver~ module:
+       #+begin_src ruby
+       webserver.vm.provision 'chef_solo' do |chef|
+         chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
+         chef.add_recipe 'apache2'
+       end
+       #+end_src
+
+      
+
