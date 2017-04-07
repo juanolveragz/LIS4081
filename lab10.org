@@ -1,0 +1,124 @@
+#+bind: org-export-publishing-directory "./build"
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [BCOR=0mm, DIV=11, headinclude=false, footinclude=false, paper=A4, fontsize=8pt,twoside]
+#+latex_header_extra: \usepackage{format/header}
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Bachelor in Computer Science and Information Technology}
+\renewcommand{\thedocumenttitle}{Practice 10}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration Laboratory}
+\renewcommand{\thecoursecode}{LIS4091}
+\makeheadfoot
+#+END_EXPORT
+
+* Hardening a Web Server
+   Nowadays is pretty common for a software project to require a public web server. Web server are
+   the entry point of several services including web apps, mobile apps, and more. This makes a web
+   a common target for attacks. Reducing the attack surface must be a priority. With Netfilter and
+   iptables it is possible to avoid common network attack vectors. 
+   
+               
+** Purpose 
+   On this practice you will be able to learn how to implement basic filters using iptables on 
+   Red Hat based Linux distributions. In addition, you will be able to create automation scripts
+   using Chef and Vagrant for server replication allowing to create web server environments easily
+   for development, testing and production environments.
+
+** Objectives
+   + Understand the filter table and its chains
+   + Implement chain rules.
+   + Understand Chef cookbooks
+   + Create a new Recipe
+   + Understand recipe development environment
+
+** Instructor-led Activities
+*** Initial Setup
+    1. Create a folder named lab10
+    2. Copy over the following files from practice 9:
+       + Vagrantfile
+       + Berksfile
+       + Gemfile
+    3. Run bundle install
+*** Practice (Continuation of Practice 9)
+    2. Next, we will be installing a recipe for the apache web server, open the Berksfile and add the following
+      line
+      #+begin_src ruby
+      cookbook 'apache2'
+      #+end_src
+    3. Now, install the cookbook from the supermarket. Use the following command
+      #+begin_src shell
+      berks vendor cookbooks
+      #+end_src
+    4. Add the following lines to the ~webserver~ module:
+      #+begin_src ruby
+      webserver.vm.provision 'chef_solo' do |chef|
+        chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
+        chef.add_recipe 'apache2'
+      end
+      #+end_src
+    5. Start up the webserver
+      #+begin_src shell
+      vagrant up webserver
+      #+end_src
+    6. Now we will create our own recipe for personalized firewall rules
+       Create a new recipe with the following command:
+      #+begin_src shell
+      berks cookbook --skip-vagrant --skip-git --skip-test-kitchen site-cookbooks/webserver-firewall
+      #+end_src
+    7. This will create a new recipe inside our ~site-cookbooks~ folder called webserver
+       Next, find the ~webserver/recipes/default.rb~ file and add the following:
+      #+begin_src ruby
+        package 'iptables' do
+          action :install
+        end
+      #+end_src
+    8. Add the recipe to the ~webserver~ run-list
+      #+begin_src ruby
+        webserver.vm.provision 'chef_solo' do |chef|
+          chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
+          chef.add_recipe 'apache2'
+          chef.add_recipe 'webserver-firewall'
+        end
+      #+end_src
+    9. Re-provision our ~webserver~ instance
+      #+begin_src shell
+      vagrant provision webserver
+      #+end_src
+      Thiswill add iptables to our instance
+    10. Now, lets add a rule manually. Append the following to our ~default.rb~ file
+      #+begin_src ruby
+      execute 'iptables-test' do
+        user 'root'
+        command 'iptables -P FORWARD DROP'
+      end
+      #+end_src
+      Re-provision and check the firewall of the instance using the iptables command
+    11. Creating our rules this way will be verbose. For our full configuration we will
+      create a template file. Create the file ~webserver-firewall/templates/default/iptables.erb~
+      and add the following
+      #+begin_src shell
+        *filter
+        :INPUT DROP [0:0]
+        :FORWARD DROP [0:0]
+        :OUTPUT DROP [0:0]
+        -A INPUT -m conntrack --ctstate INVALID -j DROP
+        -A INPUT -i lo -j ACCEPT
+        -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+        -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+        -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLIBSHED -j ACCEPT
+        -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+        COMMIT
+      #+end_src
+    12. Re-provision and check if you can connect to webserver
+      #+begin_src shell
+      vagrant ssh webserver
+      #+end_src
+    13. When packages are dropped use the following command:
+      iptables -L -n -v -x
+
+
+

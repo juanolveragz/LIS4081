@@ -152,24 +152,6 @@
        curl www.google.com
        #+end_src
        It must return the index page of google.
-    18. Now we are missing our web server and to automate the rules so next time the box goes up everything
-       is as we expect. First, remove our ~gui~ interface from the Vagrant file.
-    19. Next, we will be installing a recipe for the apache web server, open the Berksfile and add the following
-       line
-       #+begin_src ruby
-       cookbook 'apache2'
-       #+end_src
-    20. Now, install the cookbook from the supermarket. Use the following command
-       #+begin_src shell
-       berks vendor cookbooks
-       #+end_src
-    21. Add the following lines to the ~webserver~ module:
-       #+begin_src ruby
-       webserver.vm.provision 'chef_solo' do |chef|
-         chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
-         chef.add_recipe 'apache2'
-       end
-       #+end_src
 
       
 
