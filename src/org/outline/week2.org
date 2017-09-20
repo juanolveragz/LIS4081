@@ -1,0 +1,167 @@
+#+LATEX_CLASS: lecture-document-udlap
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thedocumenttitle}{Weeks 05, 06}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+This document describes the content and activities for Weeks 05 and 06 of the
+course *Network and Server Administration* with code *LI4081*. You will be
+introduced to Unix architecture and the basic steps of Linux (Arch Linux)
+
+* Outline
+  1. POSIX
+     1. What is POSIX?
+     2. Why POSIX?
+     3. POSIX basic elements
+  2. Grub
+     1. Bootloading process
+     2. Bootloader overview
+     3. Types of bootloaders.
+	1. GRUB/Legacy GRUB
+	2. Clover
+	3. System V/System D
+  3. Installation Managers
+     1. Graphical Installation Managers
+     2. Text based installation
+  4. Package Managers
+     1. What is a package manager
+     2. Which problems a package manager solve?
+     3. RPM
+     4. DEB
+     5. Sorce based linux distributions
+  5. Partitions
+     1. Overview of storage architecture
+     2. What is a partition?
+     3. MBR and GPT partition tables
+     4. Partition formats
+     5. Ext family
+     6. FATxx Family
+     7. ZFS
+     8. btrfs
+  6. Drivers
+     1. The role of the device driver
+     2. Drivers and Kernels
+	1. Drivers on hybrid kernels
+     3. Linux kernel driver installation.
+  7. Kerner Recompilation
+     1. Linux and GNU/Linux
+     2. Linux source code
+     3. When a recompilation is needed?
+     4. Kernel Images
+
+* Instructor-led Training Activities
+  1. Creation of a BIOS based virtual appliance for a source based server
+  2. Learners will be guided through the installation process of Arch Linux
+  3. Steps
+     1. Create VM with 256RAM and 8Gb HDD
+        - 256RAM
+        - 8Gb HDD
+        - 128 MB Video (Important, failing on this parameter may cause keyboard malfunction)
+     2. Start VM and use a recent Arch Linux ISO
+     3. Run x86_64 bootable
+        1. If a mount error appears (initramfs unpacking failed) please check your ISO
+     4. Personal Choice = switch keyboard to dvorak-programmer
+        1. ~loadkeys programmer-dvorak~
+        2. Or load a latin keyboard
+           1. ~es~ when the char *@* is on your *2* key of the main keyboard
+           2. ~la-latin1~ when the char *@* is on your *Q* key
+     5. Use gparted~ to create partitions
+        + Create a label with type msdos
+          + ~mklabel msdos~
+        + Create a ~swap~ partition after the first ~MiB~ of 512MiB (double of RAM until 4GB)
+          + Primar
+          + ~linux-swap~
+          + ~mkpart primary linux-swap 1MiB 513MiB~
+        + Create a ~boot~ partition of 512MB or more
+          + Primary
+          + ~ext2~
+          + ~mkpart primary ext2 513MiB 1025MiB~
+        + Use the rest of the disk on another partition
+          + Primary
+          + ~ext4~
+          + ~mkpart primary ext4 1025MiB 100%~
+        + Turn on boot flag
+          + ~set 2 boot on~
+        + Check alignment
+          + ~align-check opt 1~
+        + If alignment throws an error, erase the table and start again
+     6. Format Partitions
+        1. ~mkswap /dev/sda1~
+        2. ~mkfs.ext2 /dev/sda2~
+        3. ~mkfs.ext4 /dev/sda4~
+        4. When in doubt of partition numbers use ~lsblk~
+     7. Mount the virtual drive to the ~/mnt~ partition
+        1. ~mount /dev/sda3 /mnt~
+        2. ~mkdir /mnt/boot~
+        3. ~mount /dev/sda2 /mnt/boot~
+     8. Activate swap space
+        1. ~swapon /dev/sda1~
+     9. Pull Arch base packages
+        1. ~pacstrap /mnt base base-devel~
+     10. Prepare file system
+         1. ~genstab -U > /mnt/etc/fstab~
+     11. 
+
+  Additional resources:
+  + [[https://wiki.archlinux.org/index.php/Installation_guide][Arch Linux official installation guide]]
+  + [[https://youtu.be/lizdpoZj_vU][Arch Linux Installation Tutorial]]
+
+* Self-pace Learning Activities
+  Watch the following videos about different linux meta distributions.
+  1. Debian Linux
+     + [[https://youtu.be/BNzXSHBwHek][What is Debian Linux]]
+     + [[https://youtu.be/7-8mbeqhwEQ][Debian Installation Tutorial]]
+
+  2. Gentoo Linux
+     + [[https://youtu.be/Derhh6RxICU][Gentoo Linux: Explained]]
+     + [[https://youtu.be/13HUQ0LHI7g?list=PLo8tBedUXjpafCCx4fO7P-UbHerBLy-ku][Gentoo Installation Tutorial Playlist]]
+
+  3. Linux From Scratch
+     + [[https://youtu.be/52amqsFcWzY][What is LFS: The movie]] (Long Video 2hrs. feel free to skim it first)
+     + [[https://youtu.be/VSBkJ3rj-X4?list=PLb9vV2hyHGf6tJsTEmc-wWgDMp-CL73Cx][LFS Installation Tutorial Playlist]]
+
+* Assignment: Installing Linux
+  1. Install a linux distribution on a virtual appliance with the following characteristics:
+     + Must be one of the following distributions: Gentoo, Arch Linux, LFS.
+     + It must have the following partitions:
+       + home
+       + boot
+       + swap
+     + It must have one NAT network interface with functional Internet
+     + It must have at least one normal user with wheel privileges (~SUDO~)
+
+* Assessment
+
+  1. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 \end{equation}
+  2. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | /Manual/ steps only covers very few key parts of the installation. The operating system is not bootable after following /Manual's/ steps. | /Manual/ steps only covers some key parts of the installation. The operating system is bootable after following /Manual's/ steps but has no configuration. | /Manual/ steps only covers all key parts of the installation. The operating system is fully functional and most basic configuration can be realized with /Manual's/ steps. | /Manual/ steps are clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration. | /Manual/ steps are exceptionally clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration and XWindow configuration. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+
+#  LocalWords:  LFS

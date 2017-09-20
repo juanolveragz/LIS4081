@@ -1,0 +1,86 @@
+#+LATEX_CLASS: lecture-document-udlap
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thedocumenttitle}{Syllabus}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* General Objective
+At the end of this course, students will be able to install and manage servers, backup,
+and recover data stored on servers.
+
+* Student Learning Outcomes
+By the end of this course, students will be able to:
+
+  + Implement a server.
+  + Manage services.
+  + Create virtual stances.
+  + Backup and rescue servers.
+  + Create basic automatic services.
+
+* Course Prerequisites
+This course does not have any prerequisites
+
+* Contents
+
+#+LATEX: \begin{multicols}{2}
+1. Introduction to Servers
+2. Server Operating Systems
+   1. Comercial Operating Systems
+   2. Open Source Operating Systems
+3. Server Installation
+4. Application Management
+5. Server Administration
+6. Data Base Administration
+7. Backup and Recovery
+8. Advanced Topics
+#+LATEX: \end{multicols}
+
+* Evaluation Criteria and Evaluation Dates
+
++ Elements of Assessment
+  - Weekly Assesment: 16 weeks 5% each
+  - Capstone Project: 20%
++ General Policy
+  - It is student’s responsibility to stay in campus or near this until the last
+    day of final exams, which can be scheduled for a period of ten working days
+    after the final day of lectures.
+  - It is advised to attend all lectures.
+  - The delivery of homeworks and projects in the set time is important. NO
+    assignments will be accepted out of time. Work submitted late (with
+    justification) will be assessed on 80% of its original value. No assignments
+    will be accepted more than one week late.
+  - The student requires 80% attendance to be eligible to present the final
+    test.
+  - Any case of plagiarism or academic fraud is punishable by a 0 (zero) in the
+    task or job in question. If a student commits fraud for a second time, the
+    case will be presented to the Board of the Department, where the penalty
+    will be determined.
+  - http://comunidad.udlap.mx/departamentos/normatividad/Documents/Estudiantes_General%20Reglamento.pdf
+
+* Recomended and Supplementary textbooks
+#+LATEX: \renewcommand{\labelenumi}{[\arabic{enumi}]}
+1. Christopher Negus; Linux Bible; Wiley; 2015.
+2. Richard Blum, Christine Bresnahan; Linux Command Line and Shell Scripting
+   Bible; Wiley; 2015.
+3. Simson Garfinkel, Gene Spafford, Alan Schwartz; Practical Unix and Internet
+   Security, O`Reilly; 2003.
+4. Michael Hüttermann; DevOps for Developers; Apress; 2003.
+5. Dave Thomas, Andy Hunt, Chad Fowler; Programming Ruby 1.9 & 2.0: The
+   Pragmatic Programmers' Guide (The Facets of Ruby); Pragmatic
+   Programmer, 2013.
+
+* Lecturer
++ PhD. Juan Carlos Galán Hernández
++ E-Mail [[mailto:juan.galan@udlap.mx][juan.galan@udlap.mx]]
++ Room: LA202
++ Office Hours: *Monday* 14:00 - 16:00 and *Wednesday* 14:00 - 15:00
++ Personal Web Page: [[http://juancgalan.com/]]
++ Lecture Resources: https://outlook.office.com/owa/?path=/group/LIS4081@winlive.udlap.mx/people

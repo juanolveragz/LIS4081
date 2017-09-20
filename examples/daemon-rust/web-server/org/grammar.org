@@ -1,0 +1,10 @@
+#+title: HTTP Grammar Scanner and Lexer
+
+* Tokenizer method.
+  In order to parse HTTP protocol requests, it is required to implement a
+  tokenizer. A tokenizer is a function that /consumes/ the data stream character
+  by character and splits them into individual tokens. A token is a sequence of
+  characters defined on a given grammar, which in this particular case is HTTP
+  protocol's grammar. A tokenizer requires to define the /stop/ symbols first.
+  A stop symbol is a reserved word or symbol. In rust, stop symbols can be 
+  defined through an ~enum~. 

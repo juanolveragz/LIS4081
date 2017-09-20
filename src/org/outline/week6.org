@@ -1,0 +1,51 @@
+#+LATEX_CLASS: lecture-document-udlap
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thedocumenttitle}{Weeks 14, 15}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+  This document describes the content and activities for Weeks 14 and 15 of the course
+  *Network and Server Administration* with code *LI4081*.  
+
+* Outline
+  1. Mail Services
+     1. POP Protocol Overview (RFC1939)
+        1. Capabilities: Retrieve Messages Destructively
+        2. Ports: 110, 995
+        3. Command: APOP mailbox digest
+        4. Command: LIST /message/
+        5. Command: RETR msg
+        6. Command: DELETE msg
+        7. Command: NOOP
+        8. Command: RSET
+        9. Command: QUIT
+     2. IMAP Protocol
+     3. SMTP Protocol
+     4. Common Mail Servers: postfix, sendmail, exim.
+  2. Web Services
+     1. HTTP Protocol
+     2. HTTPs Protocol
+     4. GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,CONNECT,PATCH
+     3. Common Web Servers
+  3. Samba Server 
+  4. SSH 
+  5. FTP 
+  6. Git Lab 
+  7. MySQL.
+   
+* Instructor-led Training Activities
+  1. Interacting with EXIM
+     1. Start exim
+        1. /etc/init.d/exim4 start
+     2. Check if it is running
+        1. tail /var/log/exim4/mainlog -F
+        2. open a second terminal

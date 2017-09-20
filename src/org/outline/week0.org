@@ -1,0 +1,140 @@
+#+LATEX_CLASS: lecture-document-udlap
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thedocumenttitle}{Weeks 00, 01}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+This document describes the content and activities for Weeks 00 and 01 of the
+course *Network and Server Administration* with code *LI4081*.  This first week
+is an introduction to all the topics that will be covered through the rest of
+the course.
+
+* Outline
+1. Servers
+   1. What is a server?
+   2. Hardware for Servers
+   3. Software for Servers
+2. Operating Systems
+   1. Which Operating Systems are for Servers?
+   2. Main Objectives of Server Operating Systems.
+3. Installation
+   1. Tooling needed for server installation.
+   2. Booting an operating system.
+   3. Virtualization hardware for multiple servers.
+   4. Basics of Unix System Principles.
+4. Application Management
+   1. Basic Services: Low level overview.
+   2. Common Services: Applications most used in the industry.
+5. Server Administration
+   1. User Managment.
+   2. Permissions.
+   3. Remote Management.
+   4. Storage Systems.
+   5. Software Installation.
+   6. Secturity Risks.
+   7. Firewalls.
+   8. Proxy Servers.
+   9. DDoS.
+6. Data base Administration
+   1. Database Manager Services.
+   2. MySQL.
+7. Backup and Recovery
+   1. RAID.
+   2. File System.
+   3. Synchronization Services.
+   4. Samba Service.
+8. Advanced Topics
+   1. Automatization.
+   2. Hypervisors.
+   3. Containers.
+   4. Serverless.
+   5. Integrity
+   6. Availability.
+
+* Instructor-led Training Activities
+
+1. Exploring the Virtual Box Interface.
+
+   This activity will allow learners to get acquainted with the hypervisor to be
+   used on the next activities. This tool will be required for the capstone
+   project.
+
+   Students can also use the next resources for extra information.
+
+   - [[https://youtu.be/lUs-lePHb0o][VirtualBox for Virtualization ]][[https://youtu.be/lUs-lePHb0o]]
+
+   - [[https://youtu.be/IlV429snFQw][Virtual Desktops and Servers]] https://youtu.be/IlV429snFQw
+
+2. Install a Simple Linux Application.
+
+   In this activity, the student will install a full Linux distribution targeted
+   to desktop environments with the help of Virtualbox.
+
+   Students can also use the next resources for extra information.
+
+   - [[https://youtu.be/oSdchGgZrMM][Installing Linux Mint]] https://youtu.be/oSdchGgZrMM
+
+* Self-pace Learning Activities
+
+1. Watch the following material:
+
+   - [[https://youtu.be/tlI8okaWXVM][Introduction to Windows Server 2012]] https://youtu.be/tlI8okaWXVM
+
+   - [[https://youtu.be/WipM3SAYqK4][Linux Sucks]] https://youtu.be/WipM3SAYqK4
+
+* Assignment: Comparing Operating Systems.
+
+1. Make a /Technical Report/ that compares Operating Systems by identifying the following:
+   - Common Operating Systems for severs.
+   - Requeriments of each Operating System.
+   - Shared services between Operating Systems.
+   - Main differences.
+   - Documented Risks.
+   - Market share of each Operating System according to usage.
+2. Include a section with the follwing information:
+   - Describe situations where one particular Operating System is better suited
+     than others available, commercial or not.
+   - Choose a particular business problem that requires a server and write down
+     an /Implemetation Task Sheet/ that enumerates the steps required for
+     installing the required server including hardware and software requirements.
+
+* Assesment
+
+  1. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 10\mbox{ where }x = \frac{A + 2B + 3C + 4D + 5E}{15} \times 100\\
+		 10&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 extra = 10\mbox{ if }(D\geq 4\mbox{ or }E\geq 4)}\mbox{ and }x = 10.
+	 \end{equation}
+  2. Assesment Reference.
+
+#+BEGIN_sidewaystable
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Mechanics: Spelling, Grammar, Punctuation. | Assignment is delivered sloppy and includes many errors. | Assignment was probably not proofread as it includes several errors. | Assignment has been proofread and includes minimal errors | Assignment has been thoroughly proofread and contains no errors. | Assignment presents a superb use of the written language. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Quality of the response. | /Technical Report/ is not fully throught out and complete. Answers are incomplete and do not show evidence of completion of the /Implemetation Task Sheet/. | /Technical Report/ is complete, but the answers are not clearly articulated and fully detailed. Risks are identified, but there is no clear explanation of each one. Minimum answers are provided for each question. | /Technical Report/ is complete and includes an in-dept analysis of the landscape of Operating Systems available. The  proposed scenarios for each Operating Systems are clear and the responses to the questions are well articulated and explained. Responses demostrate a good grasp of how Operating Systems impact the overall performance of business operations. | In-depth analysis of multiple Operating Systems is evident within the /Technical Report/; responses illustrate a deep and thoughtful review. Multiple vulnerabilities are offered and a perspective of its impact. | /Technical Report/ presets and in-depth analysis of the Operating System including academic vews of design. A strong rationale is provided for choosing one Operating System over otherlikes and dislikes of the game actions, design, and appearance; additional factors are also provided for know security risks. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | D. Modification Plan | The /Implementation Taks Sheet/ is incomplete, doos not include valid suggestions. | Proposed tasks for implementation of a server are not enough for creating a functional server. The plroblem to solve is not clear. | The /Implementation Taks Sheet/ depicts well-articulated ideas with regard to solving a particular problem. Responses show understanding of how a server can help a business use case. | Recommendatons and ideas for server implementation are extremly clear and concises, and include unique recommendations to improve server solutions. Realistic or workable and valid suggestions are offered explaining how they will improve business operations. Multiple implemetation ideas are offered and are clearly explained. | Suggested implementation are unique and show a deep understanding of the current trends of server usage. The revised applications and hardware appliances reflects the current intentions of a server implementation. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | E. Creativity        | The work is not very creative. The work does not offer new approaches or ideas. | The work is somewhat creative, offering some new ideas. Familiar approaches, ideas, and methods were provided in the work. | The work is creative, offering new ideas and approaches to change the game in a somewhat unique way. | The work is creative, modifies the game in a unique way. The work takes some risks in ideas suggested for the revision. | The work is highly creative, offering multiple alternative approaches to changing the game from its original design. Familiar methods and approaches have been combined in new and innovative ways. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+#+END_sidewaystable

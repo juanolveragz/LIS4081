@@ -1,0 +1,75 @@
+#+LATEX_CLASS: lecture-document-udlap
+#+TITLE:
+#+OPTIONS: H:1 toc:nil
+#+HTML_DOCTYPE:
+
+#+BEGIN_EXPORT latex
+\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thedocumenttitle}{Weeks 07, 08}
+\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\thecoursename}{Network and Server Administration}
+\renewcommand{\thecoursecode}{LIS4081}
+\makeheadfoot
+#+END_EXPORT
+
+* Purpose
+This document describes the content and activities for Weeks 07 and 08 of the course
+*Network and Server Administration* with code *LI4081*.  
+
+* Outline
+1. User management
+2. Permissions
+3. File System
+4. Installation from source
+5. Services Administration
+6. RAID
+
+* Instructor-led Training Activities
+  1. Continue with the installation of arch linux.
+     This week, arch linux installation continues:
+     + Add a normal user
+     + Set permissions and create the wheel group
+     + Configure the network
+     + Review the needed packgaes for development environment
+
+* Self-pace Learning Activities
+  1. [[https://wiki.archlinux.org/index.php/Network_configuration][Arch Linux Network Documentation]] (Reading)
+  2. [[https://youtu.be/PEa1xopeufQ][Linux Network Configuration]] (Video)
+  3. [[http://www.xml.com/ldd/chapter/book/ch14.html][Linux Network Drivers]] (Advanced Reading)
+
+* Assignment: Installing Linux
+  1. Install a linux distribution on a virtual appliance with the following characteristics:
+     + Must be one of the following distributions: Gentoo, Arch Linux, LFS.
+     + It must have the following partitions:
+       + home
+       + boot
+       + swap
+     + It must have one NAT network interface with functional Internet
+     + It must have at least one normal user with wheel privileges (~SUDO~)
+
+* Assessment
+
+  1. Grading
+	 \begin{equation}
+	 grade = \begin{cases}
+		 x &\mbox{ if } x \leq 100\mbox{ where }x = \frac{A + 2B + 3C}{18} \times 100\\
+		 100&\mbox{ otherwise. }
+		 \end{cases}
+	 \end{equation}
+	 \begin{equation}
+	 \end{equation}
+  2. Assesment Reference.
+
+#+ATTR_LATEX: :environment tabularx :width \textwidth :align |p{1in}|X|X|X|X|X|
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 | <20>                 |
+      |                      | 1. Unnaceptable      | 2. Basic             | 3.  Proficient       | 4.  Exceed Expectations | 5. Distinguished     |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | A. Due Date          | Sent one week later. | Sent three days later. | Sent on time.        | Sent two days before. | Sent four days before. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | C. Completion        | /Manual/ steps only covers very few key parts of the installation. The operating system is not bootable after following /Manual's/ steps. | /Manual/ steps only covers some key parts of the installation. The operating system is bootable after following /Manual's/ steps but has no configuration. | /Manual/ steps only covers all key parts of the installation. The operating system is fully functional and most basic configuration can be realized with /Manual's/ steps. | /Manual/ steps are clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration. | /Manual/ steps are exceptionally clear and complete. The operating system is fully functional and most basic configuration can be realized following /Manual's/ steps. /Manual's/ steps include network configuration and XWindow configuration. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+      | B. Quality of the response. | Answers cover less than 30% of the tests. | Answers cover less than 50% of the test. | Answers cover less than 80% of the tests. | Answers cover less than 90% and at least one problem with medium difficulty was sent. | Answers cover 100% and at least one problem with medium difficulty was sent. |
+      |----------------------+----------------------+----------------------+----------------------+----------------------+----------------------|
+
+#  LocalWords:  LFS
