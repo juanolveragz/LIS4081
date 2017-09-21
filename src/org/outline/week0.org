@@ -117,7 +117,7 @@ the course.
 		 \end{cases}
 	 \end{equation}
 	 \begin{equation}
-	 extra = 10\mbox{ if }(D\geq 4\mbox{ or }E\geq 4)}\mbox{ and }x = 10.
+	 extra = 10\mbox{ if }(D\geq 4\mbox{ or }E\geq 4)\mbox{ and }x = 10.
 	 \end{equation}
   2. Assesment Reference.
 

@@ -87,7 +87,6 @@ includes a brief overview of ~git~ and ~ssh~.
    2. Make the ~$HOME/projects/houses/doors/~ directory
       path. Create the following empty files within this directory path (try
       using absolute and relative paths from your home directory):
-      #+attr_latex: :options outputdir=build
       #+begin_src shell :results silent :export code
       $HOME/projects/houses/bungalow.txt
       $HOME/projects/houses/doors/bifold.txt

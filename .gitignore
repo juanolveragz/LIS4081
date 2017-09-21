@@ -1,4 +1,5 @@
 *~
+.python-version
 *.org_archive
 *.log
 *.tex
@@ -10,9 +11,16 @@
 build/*
 auxdir/*
 ltximg/*
-_minted*
 auto/*
-
+_minted*
+output/*
 
 #WHITELIST
 !build/.gitkeep
+!output/.gitkeep
+!output/examples/.gitkeep
+!output/slides/.gitkeep
+!output/outline/.gitkeep
+!build/examples/.gitkeep
+!build/slides/.gitkeep
+!build/outline/.gitkeep
