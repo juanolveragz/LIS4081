@@ -4,9 +4,9 @@
 #+HTML_DOCTYPE:
 
 #+BEGIN_EXPORT latex
-\renewcommand{\thecareer}{Computer Systems Engineering}
+\renewcommand{\thecareer}{Department of Computing, Elecronics, and Mechatronics}
 \renewcommand{\thedocumenttitle}{Syllabus}
-\renewcommand{\theterm}{Spring 2017}
+\renewcommand{\theterm}{Spring 2018}
 \renewcommand{\thecoursename}{Network and Server Administration}
 \renewcommand{\thecoursecode}{LIS4081}
 \makeheadfoot
@@ -39,15 +39,17 @@ This course does not have any prerequisites
 4. Application Management
 5. Server Administration
 6. Data Base Administration
-7. Backup and Recovery
-8. Advanced Topics
+7. Virtualization
+8. Containers
+9. Backup and Recovery
 #+LATEX: \end{multicols}
 
 * Evaluation Criteria and Evaluation Dates
 
 + Elements of Assessment
-  - Weekly Assesment: 16 weeks 5% each
-  - Capstone Project: 20%
+  - Homework: 4 deliverables 60%
+  - Partial Exams: 30%
+  - Final Exam: 20%
 + General Policy
   - It is student’s responsibility to stay in campus or near this until the last
     day of final exams, which can be scheduled for a period of ten working days
@@ -67,20 +69,25 @@ This course does not have any prerequisites
 
 * Recomended and Supplementary textbooks
 #+LATEX: \renewcommand{\labelenumi}{[\arabic{enumi}]}
-1. Christopher Negus; Linux Bible; Wiley; 2015.
-2. Richard Blum, Christine Bresnahan; Linux Command Line and Shell Scripting
-   Bible; Wiley; 2015.
-3. Simson Garfinkel, Gene Spafford, Alan Schwartz; Practical Unix and Internet
-   Security, O`Reilly; 2003.
-4. Michael Hüttermann; DevOps for Developers; Apress; 2003.
-5. Dave Thomas, Andy Hunt, Chad Fowler; Programming Ruby 1.9 & 2.0: The
-   Pragmatic Programmers' Guide (The Facets of Ruby); Pragmatic
-   Programmer, 2013.
+1. Negus, C. Linux Bible. https://books.google.com.mx/books?id=c-zGBwAAQBAJ.
+   Wiley.
+2. Rash, M. Linux Firewalls: Attack Detection and Response with iptables, psad,
+   and fwsnort. https://books.google.com.mx/books?id=Ad9Fnk9C7QsC. 2007.
+   No Starch Press.
+3. Garfinkel, S., Spafford, G., & Schwartz, A. Practical UNIX and Internet
+   Security: Securing Solaris, Mac OS X, Linux & Free BSD.
+   https://books.google.com.mx/books?id=50maN7VmpusC. 2003. O'Reilly Media.
+4. Nemeth, E., Snyder, G., Hein, T.R., Whaley, B., Mackin, D.
+   UNIX and Linux System Administration Handbook.
+   https://books.google.com.mx/books?id=f7M1DwAAQBAJ. 2017. Pearson Education.
+5. von Hagen, W., Jones, B.K. Linux Server Hacks, Volume Two: Tips & Tools for
+   Connecting, Monitoring, and Troubleshooting.
+   https://books.google.com.mx/books?id=iAh6mU_sjgsC. 2005. O'Reilly Media.
 
 * Lecturer
 + PhD. Juan Carlos Galán Hernández
 + E-Mail [[mailto:juan.galan@udlap.mx][juan.galan@udlap.mx]]
 + Room: LA202
-+ Office Hours: *Monday* 14:00 - 16:00 and *Wednesday* 14:00 - 15:00
++ Office Hours: *Friday* 13:00 - 15:00
 + Personal Web Page: [[http://juancgalan.com/]]
-+ Lecture Resources: https://outlook.office.com/owa/?path=/group/LIS4081@winlive.udlap.mx/people
++ Lecture Resources: https://winliveudlap.sharepoint.com/sites/lis4081

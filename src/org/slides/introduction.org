@@ -1,0 +1,68 @@
+# -*- eval: (org-beamer-mode); -*-
+#+OPTIONS: H:1
+#+LATEX_CLASS: beamer
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+BEAMER_THEME: udlap
+#+BEAMER_COLOR_THEME: udlapblue
+#+BEAMER_FONT_THEME: udlap
+#+BEAMER_INNER_THEME: udlap
+#+BEAMER_OUTER_THEME: udlap
+#+BEAMER_HEADER: \udlapset{progressbar=frametitle}
+#+OPTIONS: H:2
+#+title: Week 0. Lecture Information
+#+subtitle: LIS4081 Server and Network Administration
+#+date: <2018-01-08 Mon>
+#+author: Dr. Juan Carlos Galán Hernández
+#+BEAMER_HEADER: \institute[INST]{Universidad de las Américas Puebla}
+
+* Lecture Structure
+** General Objective
+At the end of this course, students will be able to install and manage servers, backup,
+and recover data stored on servers.
+
+** Student Learning Outcomes
+
+  + Implement a server.
+  + Manage services.
+  + Create virtual stances.
+  + Backup and rescue servers.
+  + Create basic automatic services.
+  + Create containers
+
+** Contents 1/2
++ Introduction to Servers
++ Server Operating Systems
+   + Comercial Operating Systems
+   + Open Source Operating Systems
++ Server Installation
++ Application Management
+
+** Contents 2/2
++ Server Administration
++ Data Base Administration
++ Virtualization
++ Containers
++ Backup and Recovery
+
+** References 1/2
++ Negus, C. Linux Bible. https://books.google.com.mx/books?id=c-zGBwAAQBAJ.
+   Wiley.
++ Rash, M. Linux Firewalls: Attack Detection and Response with iptables, psad,
+   and fwsnort. https://books.google.com.mx/books?id=Ad9Fnk9C7QsC. 2007.
+   No Starch Press.
++ Garfinkel, S., Spafford, G., & Schwartz, A. Practical UNIX and Internet
+   Security: Securing Solaris, Mac OS X, Linux & Free BSD.
+   https://books.google.com.mx/books?id=50maN7VmpusC. 2003. O'Reilly Media.
+
+** References 2/2
++ Nemeth, E., Snyder, G., Hein, T.R., Whaley, B., Mackin, D.
+   UNIX and Linux System Administration Handbook.
+   https://books.google.com.mx/books?id=f7M1DwAAQBAJ. 2017. Pearson Education.
++ von Hagen, W., Jones, B.K. Linux Server Hacks, Volume Two: Tips & Tools for
+   Connecting, Monitoring, and Troubleshooting.
+   https://books.google.com.mx/books?id=iAh6mU_sjgsC. 2005. O'Reilly Media.
+
+* Evaluation Criteria
+  - Homework: 4 deliverables 60%
+  - Partial Exams: 30%
+  - Final Exam: 20%
