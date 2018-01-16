@@ -1,0 +1,140 @@
+# -*- eval: (org-beamer-mode); -*-
+#+OPTIONS: H:1
+#+LATEX_CLASS: beamer-cli
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+BEAMER_THEME: udlap
+#+BEAMER_COLOR_THEME: udlapblue
+#+BEAMER_FONT_THEME: udlap
+#+BEAMER_INNER_THEME: udlap
+#+BEAMER_OUTER_THEME: udlap
+#+BEAMER_HEADER: \udlapset{progressbar=frametitle}
+#+OPTIONS: H:2
+#+title: Review of Operating Systems
+#+subtitle: LIS4081 Network and Server Administration
+#+date: <2018-01-15 Mon>
+#+author: Dr. Juan Carlos Galán Hernández
+#+BEAMER_HEADER: \institute[INST]{Universidad de las Américas Puebla}
+
+* Operating System Structure
+** Operating System's Main Components
++ An operating system provides the environment within which programs are executed.
++ Focuses on the services that the system provides
++ The interface that it makes available to users and programmers
++ Focuses on the services that the system provides
+
+* Operating System Services
+** Structure of an Operating System
+
+#+caption: Overview of an Operating System Architecture
+#+NAME: fig:osoverview
+[[./src/resources/img/week01/osoverview.png]]
+
+** Operating System Services
++ User Interface
++ Program Execution
++ I/O Operations
++ File-system manipulation
++ Communications
++ Error Detection
++ Resource Allocation
++ Accounting
++ Protection and Security
+
+* User and Operating System Interface
+** Command Interpreters (1/2)
++ On systems with multiple command interpreters to choose from, the interpreters are known as shells.
+  + Bourne Shell (sh)
+  + C Shell
+  + Bourne-Again shell
+  + Korn shell
+  + Z shell
+  + Fish Shell
+
+** Command Interpreters (2/2)
++ Provides functions or access to Operating System functions
+  + Bourne Shell
+  #+attr_latex: :align |l|l|l|l|l|
+  |------+-------+----------+--------+----------|
+  | :    | .     | break    | cd     | continue |
+  |------+-------+----------+--------+----------|
+  | eval | exec  | exit     | export | getopts  |
+  |------+-------+----------+--------+----------|
+  | hash | pwd   | readonly | return | shift    |
+  |------+-------+----------+--------+----------|
+  | test | times | trap     | umask  | unset    |
+  |------+-------+----------+--------+----------|
+  + Power Shell: Lots of /cmdlets/ implemented on .NET
+
+** Graphical User Interfaces (1/4)
++ Users employ a mouse-based window-and-menu system characterized by a desktop metaphor
++ The user moves the mouse to position its pointer on images, or icons
++ Graphical user interfaces first appeared due in part to research
+  + Xerox PARC (1970)
+  + The first GUI appeared on the Xerox Alto computer in 1973.
+
+** Graphical User Interfaces (2/4)
++ UNIX systems have been dominated by command-line inter-faces.
++ Various GUI interfaces are available
+  + Common Desktop Environment (CDE)
+  + X-Windows
+
+** Graphical User Interfaces (3/4)
++ FOSS:
+  + GNOME Desktop
+  + Plasma Desktop (Former KDE)
+  + Enlightenment
+  + Openbox
+
+** Graphical User Interfaces (4/4)
++ System administrators who manage computers and power users who have deep knowledge of a system frequently use the command-line interface.
++ It is more efficient, giving them faster access to the activities they need to perform.
++ On some systems, only a subset of system functions is available via the GUI.
+
+** System Calls (1/4)
++ Provide an interface to the services
++ These calls are generally available as routines written in C and C++
++ Certain low-level task are in assembly
+
+** System Calls (2/4)
++ Application developers design programs according to an application programming interface (API).
+  + Windows API
+  + POSIX API (libc)
+  + Java API
+
+** System Calls (3/4)
++ The run-time support system (a set of functions built into libraries included with a compiler) provides a system-call interface.
+
+** System Calls (4/4)
+#+caption: The handling of a user application invoking the ~open()~ system call.
+#+NAME: fig:systemcall
+[[./src/resources/img/week01/systemcall.png]]
+
+** Types of sytem calls
++ Process Control
++ File Manipulation
++ Device Manipulation
++ Information Maintenance
++ Communications
++ Protection
+
+** Operating System Structure (1/3)
++ Monolithic
+  + MS-DOS
+  + FreeDOS
+  + SunOS
+  + Windows 9x
++ Microkernel
+  + Everything is a modular service using interprocess communications
+  + GNU Hurd
+
+** Operating System Structure (2/3)
++ Hybrid
+  + Combines Microkernel and Monolithic
+  + Windows NT
+  + Darwin
+  + Linux
+  + Plan 9
+
+** Operating System Structure (3/3)
++ Nanokernel (hypervisor lv 1)
++ Exokernel
