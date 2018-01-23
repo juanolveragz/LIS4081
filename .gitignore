@@ -1,4 +1,5 @@
 *~
+*.o
 .python-version
 *.org_archive
 *.log

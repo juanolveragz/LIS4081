@@ -1,0 +1,108 @@
+# -*- eval: (org-beamer-mode); -*-
+#+OPTIONS: H:1
+#+LATEX_CLASS: beamer-cli
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+BEAMER_THEME: udlap
+#+BEAMER_COLOR_THEME: udlapblue
+#+BEAMER_FONT_THEME: udlap
+#+BEAMER_INNER_THEME: udlap
+#+BEAMER_OUTER_THEME: udlap
+#+BEAMER_HEADER: \udlapset{progressbar=frametitle}
+#+OPTIONS: H:2
+#+title: Booting an Operating System
+#+subtitle: LIS4081 Network and Server Administration
+#+date: <2018-01-22 Mon>
+#+author: Dr. Juan Carlos Galán Hernández
+#+BEAMER_HEADER: \institute[INST]{Universidad de las Américas Puebla}
+
+* Booting Process of an Operating System
+** Introduction
++ The operating system is loaded through a bootstrapping process, more succinctly known as booting.
++ A boot loader is a program whose task is to load a bigger program, such as the operating system.
+
+** Loading
++ Read-only memory would contain a small bootloader that would have basic intelligence to read, say, the first sector (512 bytes) of a disk.
++ The boot loader would load another boot loader, called a second stage loader.
++ This multi-stage boot loader, having a boot loader load a bigger boot loader, is called chain loading.
+
+** IA-32 (x86) Startup
++ An IA–32-based PC is expected to have a BIOS on ROM.
++ Contains low-level functions for accessing some basic system devices:
+  + Such as performing disk I/O.
+  + Reading from the keyboard, and accessing the video display.
+  + This is covered as Int 10h (16).
+  + It also contains code to load a stage 1 boot loader.
++ The computer starts execution at memory location 0xffff0.
+
+** BIOS Sequence
+    1. power-on self-test (post)
+    2. detect the video card’s (chip’s) bios and execute its code to initialize the video hardware
+    3. detect any other device bioses and invoke their initialize functions
+    4. display the bios start-up screen
+    5. perform a brief memory test (identify how much memory is in the system)
+    6. set memory and drive parameters
+    7. configure plug & play devices (traditionally pci bus devices)
+    8. assign resources (dma channels & irqs)
+    9. identify the boot device
+
+** Power on self test (POST)
+    - Verify cpu registers
+    - Verify the integrity of the bios code itself
+    - Verify some basic components like dma, timer, interrupt controller
+    - Find, size, and verify system main memory
+    - Initialize BIOS
+    - Pass control to other specialized extension bioses (if installed)
+    - Identify, organize, and select which devices are available for booting
+
+** Modes (1/2)
++ The processor starts up in Real Mode:
+  + Gives it access to only a 20-bit memory address space (1MiB)
+  + Direct Access to I/O, hardware interruptions and memory
++ The location at 0xffff0 is actually at the end of the BIOS ROM and contains a
+  jump instruction to a region of the BIOS that contains start-up code.
+
+** Modes (2/2)
++ Protected Mode
+  + Access to 32-bit memory address (4GiB)
+  + Virtual Spaces (Pages)
+  + Secure I/O and Memory access
+  + Disables BIOS interruptions
++ Virtual 8086 Mode
+  + "Real Mode" inside Protected Mode
+  + Allows BIOS Functions
++ Unreal Mode
+  + Allows 32-bit address on real mode
+  + Still uses 16-bit instruction set
+  + Switches Real/Protected mode back and forth
+  + Big Unreal Mode (code must be up to 64K) / Huge Unreal Mode (Harder to implement)
+
+** Bootstraping
+   + Second booting stage is stored on the Master Boot Record (MBR)
+   + The MBR starts at the block 0 of a disk (disk 0 on older machines)
+   + MBR Older Structure
+     + First stage boot loader (≤ 442 bytes)
+     + Disk signature (4 bytes)
+     + Disk partition table, which identifies distinct regions of the disk (16 bytes per partition × 4 partitions)
+     + Last two bytes are the bootable flag. If the disk contains a bootloader, this two bytes are set to the magic number 0x55AA
+
+** MBR Modern Structure
+[[./src/resources/img/week02/mbr.png]]
+
+** Volume Boot Record
++ The MBR code scans through its partition table and loads the Volume Boot Record (VBR) for that partition
++ The first block of the VBR identifies the partition type and size and contains an Initial Program Loader (IPL)
++ Comprise the second stage boot loader:
+  + Windows: BIOS -> MBR -> NTLDR (NTFS, FAT)
+  + LINUX: BIOS -> Grub Stage 1 -> Grub Stage 2 (multiple file systems, including windows)
+
+** UEFI
++ Unified Extensible Firmware Interface
++ Loads second stage bootloader into NVRAM
++ Legacy mode (CMS/BIOS)
++ Universal Graphic Adapter (UAG)/ Graphics Output Protocol (GOP)
+
+** Secure Boot
++ Prevents the loading of drivers or OS loaders that are not signed
++ The mechanical details of how precisely these drivers are to be signed are not specified.
++ Microsoft uses a private key.
++ Was accused of prevent installation of other OSs
