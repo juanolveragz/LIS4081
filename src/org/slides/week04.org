@@ -1,0 +1,82 @@
+# -*- eval: (org-beamer-mode); -*-
+#+OPTIONS: H:1
+#+LATEX_CLASS: beamer-cli
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+BEAMER_THEME: udlap
+#+BEAMER_COLOR_THEME: udlapblue
+#+BEAMER_FONT_THEME: udlap
+#+BEAMER_INNER_THEME: udlap
+#+BEAMER_OUTER_THEME: udlap
+#+BEAMER_HEADER: \udlapset{progressbar=frametitle}
+#+OPTIONS: H:2
+#+title: Server's Theory
+#+subtitle: LIS4081 Network and Server Administration
+#+date: <2018-02-13 Tue>
+#+author: Dr. Juan Carlos Galán Hernández
+#+BEAMER_HEADER: \institute[INST]{Universidad de las Américas Puebla}
+
+* How to create a server
+** What is a server (Software)
++ Sits on the /background/
++ Answers to petitions
++ Uses a communication mechanism
++ Doesn't hog the processor
+** Who controls the server?
++ Server's resources are managed by the Operating System (or a VM)
++ It anwsers as fast as possible
++ It may answers to multiple request concurrently
+* Process
+** Process
++ A process is the unit of work in a modern time-sharing system.
++ A system consists of a collection of processes
++ By switching the CPU between processes, the operating system can
+  make the computer more productive.
+** Linux implementation of a Process 1/5
++ A process is a program (object code stored on some media) in the
+  midst of execution.
++ They also include:
+  + A set of resources such as open files and pending signals
+  + Internal kernel data, processor state, a memory address space with one or more memory mappings
+  + One or more threads of execution,
+  + Data section containing global variables
+** Linux implementation of a Process 2/5
++ A process is created calling ~fork()~.
++ ~fork()~ duplicates the process, even its memory pages.
++ If the new process requires to do a different job, it must call ~exec()~.
++ The process using ~fork~ is called the /parent process/.
+** Linux implementation of a Process 3/5
++ If a process exists, it enters into a /Zombie State/.
++ A process truly ends when its parents wall for ~waitpid~ or ~wait~.
++ At boot, ~PID 0~ inits ~PID 1~.
++ All process after are sons of ~PID 1~, unless they are started by another process.
+** Linux implementation of a Process 4/5
++ If a parent process dies, its sons are adopted by ~PID 1~.
++ A ~PID~ is as ~short int~, an it of 16 bits.
++ Can be increased to $2^32$
+** Linux implementation of a Process 5/5
+file:./src/resources/img/week04/processsate.png
+** Windows implementation of a Process
++ A process is an executing program.
++ A job is a set of process in the same context.
++ A process is creating using ~CreateProcess~ call.
++ ~CreateProcess~ is a combination of ~fork~ and ~exec~.
+** Windows implementation of a Process
+file:./src/resources/img/week04/windowsprocessstate.png
+* Thread
+** Thread
++ Threads are a popular modern programming abstraction.
++ They provide multiple threads of execution within the same program in a shared memory address space.
++ They can also share open files and other resources.
+** Linux implementation of a thread
++ Linux has a unique implementation of threads.
++ Linux implements all threads as standard processes.
++ A thread is merely a process that shares certain resources with other processes.
+** Linux objective of a thread
++ To Linux, threads are simply a manner of sharing resources between processes.
++ There is no special convention or support at kernel level.
++ A thread is not reparented.
+** Windows implementation of a thread
++ A thread is the basic unit of processor time
++ It shares its context with its parent process
++ A new process has at least one thread
+** Green threads and Fibers
