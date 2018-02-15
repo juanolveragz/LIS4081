@@ -54,7 +54,7 @@
 + A ~PID~ is as ~short int~, an it of 16 bits.
 + Can be increased to $2^32$
 ** Linux implementation of a Process 5/5
-file:./src/resources/img/week04/processsate.png
+file:./src/resources/img/week04/processstate.png
 ** Windows implementation of a Process
 + A process is an executing program.
 + A job is a set of process in the same context.
